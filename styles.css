@@ -1,5 +1,5 @@
 :root{
-  --bg:#f4efe4;--surface:#fffaf0;--surface-2:#efe6d3;--text:#17382f;--muted:#6c7c76;--primary:#0d3f33;--primary-2:#165b49;--gold:#b79758;--line:rgba(13,63,51,.12);--shadow:0 7px 20px rgba(24,51,42,.08)
+  --bg:#f4efe4;--surface:#fffaf0;--surface-2:#efe6d3;--text:#17382f;--muted:#6c7c76;--primary:#0d3f33;--primary-2:#165b49;--gold:#b79758;--line:rgba(13,63,51,.12);--shadow:0 7px 20px rgba(24,51,42,.08);--font-scale:1
 }
 :root[data-theme="dark"]{--bg:#0b1714;--surface:#11241f;--surface-2:#183128;--text:#f7f0df;--muted:#a9b8b2;--primary:#d7c18c;--primary-2:#f0d9a2;--gold:#d4b56e;--line:rgba(255,255,255,.08);--shadow:0 7px 20px rgba(0,0,0,.18)}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}body{padding:0;overflow-x:hidden}button,input{font:inherit}button{cursor:pointer}
@@ -48,3 +48,31 @@
 
 @media (max-width:430px){.eyebrow{font-size:16px}.brand-logo{width:44px;height:44px;flex-basis:44px}.brand-wrap{gap:9px}.icon-btn{width:45px;height:45px;flex-basis:45px}.icon-btn::before{font-size:24px}}
 @media (max-width:380px){.view{padding:12px}.hero h2{font-size:23px}.quick-card{min-height:88px}.eyebrow{font-size:15px}.brand-logo{width:42px;height:42px;flex-basis:42px}.topbar{padding-left:12px;padding-right:12px}}
+
+/* User text-size setting: scale text consistently across the whole Mini App */
+body,.view,.topbar,.bottom-nav{font-size:calc(16px * var(--font-scale))}
+.hero-kicker{font-size:calc(12px * var(--font-scale))}
+.hero h2{font-size:calc(25px * var(--font-scale))}
+.hero p{font-size:calc(14px * var(--font-scale))}
+.section-head h2{font-size:calc(17px * var(--font-scale))}
+.quick-icon{font-size:calc(21px * var(--font-scale))}
+.quick-title{font-size:calc(15px * var(--font-scale))}
+.quick-sub{font-size:calc(11px * var(--font-scale))}
+.progress-row strong{font-size:calc(22px * var(--font-scale))}
+.badge{font-size:calc(11px * var(--font-scale))}
+.course-card h3,.lesson-card h3{font-size:calc(16px * var(--font-scale))}
+.course-card p,.lesson-card p{font-size:calc(12px * var(--font-scale))}
+.lesson-header h2{font-size:calc(21px * var(--font-scale))}
+.lesson-header p{font-size:calc(13px * var(--font-scale))}
+.play-btn{font-size:calc(18px * var(--font-scale))}
+.audio-sub{font-size:calc(11px * var(--font-scale))}
+.lesson-text{font-size:calc(14px * var(--font-scale))}
+.file-icon{font-size:calc(20px * var(--font-scale))}
+.avatar{font-size:calc(18px * var(--font-scale))}
+.favorite-btn{font-size:calc(23px * var(--font-scale))}
+.empty-icon{font-size:calc(31px * var(--font-scale))}
+.nav-item span{font-size:calc(19px * var(--font-scale))}
+.nav-item small{font-size:calc(10px * var(--font-scale))}
+.font-value{min-width:76px;text-align:center}
+@media (max-width:430px){.eyebrow{font-size:calc(16px * var(--font-scale))}}
+@media (max-width:380px){.hero h2{font-size:calc(23px * var(--font-scale))}.eyebrow{font-size:calc(15px * var(--font-scale))}}
