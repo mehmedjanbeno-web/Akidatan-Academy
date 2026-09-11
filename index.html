@@ -5,7 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0d3f33" />
   <title>Ӏакъидатан Академия</title>
-  <link rel="stylesheet" href="styles.css?v=header-20260911-1620" />
+  <link rel="stylesheet" href="styles.css?v=header-20260911-1644" />
+  <style>
+    .topbar{min-height:68px!important;padding:calc(9px + env(safe-area-inset-top)) 16px 9px!important;gap:12px!important}
+    .brand-wrap{display:flex!important;align-items:center!important;gap:10px!important;min-width:0!important;flex:1!important}
+    .brand-logo{display:block!important;width:44px!important;height:44px!important;flex:0 0 44px!important;border-radius:50%!important;object-fit:cover!important;background:#fff!important;border:1px solid rgba(183,151,88,.42)!important;box-shadow:0 3px 12px rgba(0,0,0,.14)!important}
+    .brand-copy{min-width:0!important;display:flex!important;align-items:center!important}
+    .eyebrow{font-family:Georgia,"Times New Roman",serif!important;font-size:18px!important;line-height:1.05!important;letter-spacing:.01em!important;text-transform:none!important;color:var(--gold)!important;font-weight:700!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+    .topbar h1{display:none!important}
+    .icon-btn{width:40px!important;height:40px!important;flex:0 0 40px!important;border-radius:13px!important}
+    @media(max-width:380px){.eyebrow{font-size:16px!important}.brand-logo{width:42px!important;height:42px!important;flex-basis:42px!important}.topbar{padding-left:12px!important;padding-right:12px!important}}
+  </style>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
@@ -14,9 +24,8 @@
       <div class="brand-wrap">
         <img
           class="brand-logo"
-          src="https://t.me/i/userpic/320/AkidatanAcademyAppBot.jpg"
+          src="https://t.me/i/userpic/320/AkidatanAcademyAppBot.jpg?v=2"
           alt="Ӏакъидатан Академия"
-          onerror="this.style.display='none'"
         />
         <div class="brand-copy">
           <div class="eyebrow">ӀАКЪИДАТАН АКАДЕМИЯ</div>
@@ -44,6 +53,6 @@
     </section>
   </template>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=20260911-1644"></script>
 </body>
 </html>
