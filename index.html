@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0d3f33" />
   <title>Ӏакъидатан Академия</title>
-  <link rel="stylesheet" href="styles.css?v=theme-20260911-1651" />
+  <link rel="stylesheet" href="styles.css?v=themefix-20260911-1728" />
   <style>
     .topbar{min-height:68px!important;padding:calc(9px + env(safe-area-inset-top)) 16px 9px!important;gap:12px!important}
     .brand-wrap{display:flex!important;align-items:center!important;gap:10px!important;min-width:0!important;flex:1!important}
@@ -13,9 +13,9 @@
     .brand-copy{min-width:0!important;display:flex!important;align-items:center!important}
     .eyebrow{font-family:Georgia,"Times New Roman",serif!important;font-size:18px!important;line-height:1.05!important;letter-spacing:.01em!important;text-transform:none!important;color:var(--gold)!important;font-weight:700!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
     .topbar h1{display:none!important}
-    .icon-btn{width:52px!important;height:52px!important;flex:0 0 52px!important;border-radius:16px!important;display:grid!important;place-items:center!important;padding:0!important;font-size:27px!important;line-height:1!important;background:var(--surface)!important;border:1px solid var(--line)!important;color:var(--text)!important}
-    .theme-symbol{display:block;transform:translateY(-1px)}
-    @media(max-width:380px){.eyebrow{font-size:16px!important}.brand-logo{width:42px!important;height:42px!important;flex-basis:42px!important}.topbar{padding-left:12px!important;padding-right:12px!important}.icon-btn{width:48px!important;height:48px!important;flex-basis:48px!important;font-size:25px!important}}
+    .icon-btn{width:52px!important;height:52px!important;flex:0 0 52px!important;border-radius:16px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;background:var(--surface)!important;border:1px solid var(--line)!important;color:var(--text)!important;overflow:hidden!important}
+    .theme-symbol{display:block!important;width:30px!important;height:30px!important;line-height:30px!important;text-align:center!important;font-size:26px!important;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif!important;font-weight:400!important;letter-spacing:0!important;transform:none!important;white-space:nowrap!important}
+    @media(max-width:380px){.eyebrow{font-size:16px!important}.brand-logo{width:42px!important;height:42px!important;flex-basis:42px!important}.topbar{padding-left:12px!important;padding-right:12px!important}.icon-btn{width:48px!important;height:48px!important;flex-basis:48px!important}.theme-symbol{font-size:25px!important}}
   </style>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
@@ -23,21 +23,15 @@
   <div id="app" class="app-shell">
     <header class="topbar">
       <div class="brand-wrap">
-        <img
-          class="brand-logo"
-          src="https://t.me/i/userpic/320/AkidatanAcademyAppBot.jpg?v=2"
-          alt="Ӏакъидатан Академия"
-        />
+        <img class="brand-logo" src="https://t.me/i/userpic/320/AkidatanAcademyAppBot.jpg?v=2" alt="Ӏакъидатан Академия" />
         <div class="brand-copy">
           <div class="eyebrow">ӀАКЪИДАТАН АКАДЕМИЯ</div>
           <h1 id="page-title">Главная</h1>
         </div>
       </div>
-      <button id="theme-toggle" class="icon-btn" aria-label="Включить светлую тему" title="Сменить тему"><span class="theme-symbol">☀️</span></button>
+      <button id="theme-toggle" class="icon-btn" aria-label="Сменить тему" title="Сменить тему"></button>
     </header>
-
     <main id="view" class="view" aria-live="polite"></main>
-
     <nav class="bottom-nav" aria-label="Основная навигация">
       <button class="nav-item active" data-route="home"><span>⌂</span><small>Главная</small></button>
       <button class="nav-item" data-route="courses"><span>▤</span><small>Курсы</small></button>
@@ -45,15 +39,7 @@
       <button class="nav-item" data-route="profile"><span>◉</span><small>Профиль</small></button>
     </nav>
   </div>
-
-  <template id="empty-template">
-    <section class="card empty-state">
-      <div class="empty-icon">✦</div>
-      <h2></h2>
-      <p></p>
-    </section>
-  </template>
-
-  <script src="app.js?v=theme-20260911-1651"></script>
+  <template id="empty-template"><section class="card empty-state"><div class="empty-icon">✦</div><h2></h2><p></p></section></template>
+  <script src="app.js?v=themefix-20260911-1728"></script>
 </body>
 </html>
