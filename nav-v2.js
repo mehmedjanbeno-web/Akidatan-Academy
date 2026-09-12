@@ -37,4 +37,8 @@
 
   new MutationObserver(schedule).observe(view,{childList:true});
   schedule();
+
+  const profileScript=document.createElement('script');
+  profileScript.src=`profile-sync.js?v=20260912-1538`;
+  document.body.appendChild(profileScript);
 })();
