@@ -5,6 +5,7 @@
 
   const noteSvg=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9.5L19 7v13.5H6z"/><path d="M15.5 3.5V7H19M9 11h7M9 14.5h7M9 18h4.5"/></svg>`;
   const copySvg=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>`;
+  const resizeSvg=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20h10V10M14 20l6-6M18 20l2-2"/></svg>`;
   const NOTES_KEY='academy-lesson-notes-v1';
 
   const readNotes=()=>{
@@ -72,7 +73,10 @@
         <div class="lesson-note-panel" data-note-panel="${lesson.id}" hidden>
           <div class="lesson-note-title">${copy.title}</div>
           <p class="lesson-note-help">${copy.help}</p>
-          <textarea class="lesson-note-text" data-note-text="${lesson.id}" placeholder="${copy.placeholder}"></textarea>
+          <div class="lesson-note-editor">
+            <textarea class="lesson-note-text" data-note-text="${lesson.id}" placeholder="${copy.placeholder}"></textarea>
+            <button class="lesson-note-resize" type="button" data-note-resize="${lesson.id}" aria-label="Изменить размер блокнота" title="Изменить размер блокнота">${resizeSvg()}</button>
+          </div>
           <button class="secondary-btn lesson-note-copy" type="button" data-note-copy="${lesson.id}">${copySvg()}<span>${copy.copy}</span></button>
           <div class="lesson-note-actions">
             <button class="primary-btn lesson-note-save" type="button" data-note-save="${lesson.id}">${copy.save}</button>
@@ -114,6 +118,33 @@
       try{document.execCommand('copy');toast(noteText().copied);haptic()}catch(__){}
     }
   }
+
+  let resizeState=null;
+  function resizeMove(clientY){
+    if(!resizeState)return;
+    const next=Math.max(180,Math.min(620,resizeState.startHeight+(clientY-resizeState.startY)));
+    resizeState.textarea.style.height=`${next}px`;
+  }
+  function stopResize(){
+    if(!resizeState)return;
+    document.body.classList.remove('note-resizing');
+    resizeState=null;
+  }
+
+  document.addEventListener('pointerdown',e=>{
+    const handle=e.target.closest('[data-note-resize]');
+    if(!handle)return;
+    e.preventDefault();
+    e.stopPropagation();
+    const textarea=document.querySelector(`[data-note-text="${handle.dataset.noteResize}"]`);
+    if(!textarea)return;
+    resizeState={textarea,startY:e.clientY,startHeight:textarea.getBoundingClientRect().height};
+    document.body.classList.add('note-resizing');
+    try{handle.setPointerCapture(e.pointerId)}catch(_){}
+  },true);
+  document.addEventListener('pointermove',e=>{if(resizeState){e.preventDefault();resizeMove(e.clientY)}},true);
+  document.addEventListener('pointerup',stopResize,true);
+  document.addEventListener('pointercancel',stopResize,true);
 
   document.addEventListener('click',e=>{
     const toggle=e.target.closest('[data-note-toggle]');
