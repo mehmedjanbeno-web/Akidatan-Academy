@@ -14,7 +14,6 @@
   const writeNotes=notes=>localStorage.setItem(NOTES_KEY,JSON.stringify(notes));
   const noteText=()=>state.language==='ce'?{
     button:'Блокнот',
-    title:'Блокнот урока',
     help:'ЛадоьгӀучу хенахь ладаме ойланаш а, билгалдахарш а кхузахь дӀаяздаде. ТӀетаӀае «Ӏалашдан», хӀокху гӀирса тӀехь уьш диса кхин дӀа а.',
     placeholder:'Билгалдахар кхузахь дӀаязде...',
     save:'Ӏалашдан',
@@ -26,7 +25,6 @@
     empty:'Блокнот пуст'
   }:{
     button:'Блокнот',
-    title:'Блокнот урока',
     help:'Записывайте здесь важные мысли и заметки во время прослушивания урока. Нажмите «Сохранить», чтобы запись осталась на этом устройстве.',
     placeholder:'Напишите заметку к этому уроку...',
     save:'Сохранить',
@@ -72,7 +70,6 @@
           ${noteSvg()}<span>${copy.button}</span>
         </button>
         <div class="lesson-note-panel" data-note-panel="${lesson.id}" hidden>
-          <div class="lesson-note-title">${copy.title}</div>
           <p class="lesson-note-help" data-note-help="${lesson.id}" ${hasNote?'hidden':''}>${copy.help}</p>
           <div class="lesson-note-editor">
             <textarea class="lesson-note-text" data-note-text="${lesson.id}" placeholder="${copy.placeholder}"></textarea>
@@ -90,15 +87,14 @@
     if(textarea)textarea.value=noteValue;
   };
 
-  function syncHelp(id){
+  function syncWritingMode(id){
     const textarea=document.querySelector(`[data-note-text="${id}"]`);
     const help=document.querySelector(`[data-note-help="${id}"]`);
-    const panel=document.querySelector(`[data-note-panel="${id}"]`);
     const toggle=document.querySelector(`[data-note-toggle="${id}"]`);
     if(!textarea)return;
     const hasText=Boolean(textarea.value.trim());
     if(help)help.hidden=hasText;
-    if(toggle)toggle.hidden=Boolean(panel&&!panel.hidden&&hasText);
+    if(toggle)toggle.hidden=hasText;
   }
 
   function closeNote(id){
@@ -161,7 +157,7 @@
   document.addEventListener('input',e=>{
     const textarea=e.target.closest('[data-note-text]');
     if(!textarea)return;
-    syncHelp(textarea.dataset.noteText);
+    syncWritingMode(textarea.dataset.noteText);
   },true);
 
   document.addEventListener('click',e=>{
@@ -172,7 +168,7 @@
       if(panel){
         panel.hidden=!panel.hidden;
         toggle.setAttribute('aria-expanded',String(!panel.hidden));
-        if(!panel.hidden){panel.querySelector('textarea')?.focus();syncHelp(id)}
+        if(!panel.hidden){panel.querySelector('textarea')?.focus();syncWritingMode(id)}
       }
       haptic();
       return;
@@ -205,7 +201,7 @@
       writeNotes(notes);
       const textarea=document.querySelector(`[data-note-text="${id}"]`);
       if(textarea)textarea.value='';
-      syncHelp(id);
+      syncWritingMode(id);
       deleteBtn.disabled=true;
       closeNote(id);
       toast(noteText().removed);
