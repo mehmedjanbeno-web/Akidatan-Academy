@@ -51,9 +51,13 @@
     if(!card)return;
     const name=[user.first_name,user.last_name].filter(Boolean).join(' ')||'Telegram';
     const username=user.username?`@${user.username}`:'';
-    const photo=profilePhoto||user.photo_url||'';
-    const avatar=photo?`<img src="${escapeHtml(photo)}" alt="" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex:0 0 72px">`:`<div class="avatar">${escapeHtml((user.first_name||'ӀА').slice(0,2))}</div>`;
+    const publicPhoto=user.username?`https://t.me/i/userpic/320/${encodeURIComponent(user.username)}.jpg`:'';
+    const photo=profilePhoto||user.photo_url||publicPhoto;
+    const initials=(user.first_name||'ӀА').slice(0,2);
+    const avatar=photo?`<img class="profile-avatar-img" src="${escapeHtml(photo)}" alt="" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex:0 0 72px">`:`<div class="avatar">${escapeHtml(initials)}</div>`;
     card.innerHTML=`${avatar}<div><h3 style="margin:0">${escapeHtml(name)}</h3>${username?`<p style="margin:5px 0 0;color:var(--muted)">${escapeHtml(username)}</p>`:''}<p style="margin:5px 0 0;color:var(--muted)">${t('academyStudent')}</p></div>`;
+    const img=card.querySelector('.profile-avatar-img');
+    if(img)img.addEventListener('error',()=>{const d=document.createElement('div');d.className='avatar';d.textContent=initials;img.replaceWith(d)},{once:true});
   };
 
   async function start(){
