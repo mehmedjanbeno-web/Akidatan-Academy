@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -20,74 +20,20 @@
     .icon-btn{width:52px!important;height:52px!important;flex:0 0 52px!important;border-radius:16px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;background:var(--surface)!important;border:1px solid var(--line)!important;color:var(--text)!important;overflow:hidden!important}
     .theme-symbol{display:block!important;width:30px!important;height:30px!important;line-height:30px!important;text-align:center!important;font-size:26px!important;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif!important;font-weight:400!important;letter-spacing:0!important;transform:none!important;white-space:nowrap!important}
     .icon-btn::before{content:none!important;display:none!important}
-
-    .link-btn[data-back]{
-      justify-self:start!important;
-      display:inline-flex!important;
-      align-items:center!important;
-      justify-content:center!important;
-      gap:9px!important;
-      min-height:50px!important;
-      padding:12px 18px!important;
-      border-radius:15px!important;
-      background:#efe6d3!important;
-      border:1px solid #b79758!important;
-      color:#17382f!important;
-      font-size:calc(18px * var(--font-scale))!important;
-      font-weight:900!important;
-      box-shadow:0 6px 18px rgba(24,51,42,.12)!important;
-      text-decoration:none!important;
-      transition:transform .14s ease,background .14s ease!important;
-    }
+    .link-btn[data-back]{justify-self:start!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;min-height:50px!important;padding:12px 18px!important;border-radius:15px!important;background:#efe6d3!important;border:1px solid #b79758!important;color:#17382f!important;font-size:calc(18px * var(--font-scale))!important;font-weight:900!important;box-shadow:0 6px 18px rgba(24,51,42,.12)!important;text-decoration:none!important;transition:transform .14s ease,background .14s ease!important}
     .link-btn[data-back]:active{transform:scale(.97)!important;background:#e7dcc5!important}
-    :root[data-theme="dark"] .link-btn[data-back]{
-      background:#183128!important;
-      border-color:#d4b56e!important;
-      color:#f7f0df!important;
-      box-shadow:0 6px 18px rgba(0,0,0,.28)!important;
-    }
-
+    :root[data-theme="dark"] .link-btn[data-back]{background:#183128!important;border-color:#d4b56e!important;color:#f7f0df!important;box-shadow:0 6px 18px rgba(0,0,0,.28)!important}
     .search-wrap input{padding-right:66px!important}
-    .search-wrap>span{
-      right:10px!important;
-      top:50%!important;
-      transform:translateY(-50%)!important;
-      width:44px!important;
-      height:44px!important;
-      display:flex!important;
-      align-items:center!important;
-      justify-content:center!important;
-      font-size:32px!important;
-      line-height:1!important;
-      font-weight:900!important;
-      color:var(--primary-2)!important;
-      opacity:1!important;
-      pointer-events:none!important;
-    }
+    .search-wrap>span{right:10px!important;top:50%!important;transform:translateY(-50%)!important;width:44px!important;height:44px!important;display:flex!important;align-items:center!important;justify-content:center!important;font-size:32px!important;line-height:1!important;font-weight:900!important;color:var(--primary-2)!important;opacity:1!important;pointer-events:none!important}
     :root[data-theme="dark"] .search-wrap>span{color:#f0d9a2!important}
-
-    @media(max-width:380px){
-      .eyebrow{font-size:calc(16px * var(--font-scale))!important}
-      .brand-logo{width:42px!important;height:42px!important;flex-basis:42px!important}
-      .topbar{padding-left:12px!important;padding-right:12px!important}
-      .icon-btn{width:48px!important;height:48px!important;flex-basis:48px!important}
-      .theme-symbol{font-size:25px!important}
-      .link-btn[data-back]{font-size:calc(17px * var(--font-scale))!important;padding:11px 15px!important;min-height:48px!important}
-      .search-wrap>span{width:42px!important;height:42px!important;font-size:30px!important}
-    }
+    @media(max-width:380px){.eyebrow{font-size:calc(16px * var(--font-scale))!important}.brand-logo{width:42px!important;height:42px!important;flex-basis:42px!important}.topbar{padding-left:12px!important;padding-right:12px!important}.icon-btn{width:48px!important;height:48px!important;flex-basis:48px!important}.theme-symbol{font-size:25px!important}.link-btn[data-back]{font-size:calc(17px * var(--font-scale))!important;padding:11px 15px!important;min-height:48px!important}.search-wrap>span{width:42px!important;height:42px!important;font-size:30px!important}}
   </style>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
   <div id="app" class="app-shell">
     <header class="topbar">
-      <div class="brand-wrap">
-        <img class="brand-logo" src="https://t.me/i/userpic/320/AkidatanAcademyAppBot.jpg?v=2" alt="Ӏакъидатан Академия" />
-        <div class="brand-copy">
-          <div class="eyebrow">ӀАКЪИДАТАН АКАДЕМИЯ</div>
-          <h1 id="page-title">Коьртаниг</h1>
-        </div>
-      </div>
+      <div class="brand-wrap"><img class="brand-logo" src="https://t.me/i/userpic/320/AkidatanAcademyAppBot.jpg?v=2" alt="Ӏакъидатан Академия" /><div class="brand-copy"><div class="eyebrow">ӀАКЪИДАТАН АКАДЕМИЯ</div><h1 id="page-title">Коьртаниг</h1></div></div>
       <button id="theme-toggle" class="icon-btn" aria-label="Сменить тему" title="Сменить тему"></button>
     </header>
     <main id="view" class="view" aria-live="polite"></main>
@@ -99,9 +45,9 @@
     </nav>
   </div>
   <template id="empty-template"><section class="card empty-state"><div class="empty-icon">✦</div><h2></h2><p></p></section></template>
-  <script src="app.js?v=search-back-icon-final-20260912-1458"></script>
+  <script src="app.js?v=defaults-dark-compact-20260912-1652"></script>
   <script src="nav-v2.js?v=20260912-1524"></script>
-  <script src="profile-sync-v2.js?v=20260912-1631"></script>
+  <script src="profile-sync-v2.js?v=defaults-dark-compact-20260912-1652"></script>
   <script src="profile-progress.js?v=20260912-1545"></script>
 </body>
 </html>
