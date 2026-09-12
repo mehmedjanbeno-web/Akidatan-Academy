@@ -1,8 +1,9 @@
 .hero.academy-home-brand{position:relative;margin:-14px -16px 0!important;padding:11px 82px 10px!important;border-radius:0 0 22px 22px!important;min-height:0!important;text-align:center!important;display:block!important;overflow:hidden!important;box-shadow:0 7px 18px rgba(0,0,0,.15)!important}
+.hero.academy-home-brand::after{pointer-events:none!important}
 .hero.academy-home-brand .hero-kicker{display:none!important}
-.hero.academy-home-brand .academy-home-logo{position:absolute;left:16px;top:10px;width:48px;height:48px;border-radius:50%;object-fit:cover;background:#fff;border:2px solid rgba(240,217,162,.72);box-shadow:0 4px 12px rgba(0,0,0,.18)}
-.hero.academy-home-brand .academy-home-menu{position:absolute;right:16px;top:10px;width:48px;height:48px;border-radius:16px;border:1px solid rgba(240,217,162,.3);background:rgba(9,48,39,.68);display:grid;place-items:center;padding:0;color:#f7f0df;box-shadow:0 4px 12px rgba(0,0,0,.12)}
-.hero.academy-home-brand .academy-home-menu svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+.hero.academy-home-brand .academy-home-logo{position:absolute;left:16px;top:10px;width:48px;height:48px;border-radius:50%;object-fit:cover;background:#fff;border:2px solid rgba(240,217,162,.72);box-shadow:0 4px 12px rgba(0,0,0,.18);z-index:2}
+.hero.academy-home-brand .academy-home-menu{position:absolute;right:16px;top:10px;width:48px;height:48px;border-radius:16px;border:1px solid rgba(240,217,162,.3);background:rgba(9,48,39,.68);display:grid;place-items:center;padding:0;color:#f7f0df;box-shadow:0 4px 12px rgba(0,0,0,.12);z-index:3;pointer-events:auto!important}
+.hero.academy-home-brand .academy-home-menu svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;pointer-events:none}
 .hero.academy-home-brand h2{margin:8px auto 0!important;max-width:none!important;width:100%!important;text-align:center!important;font-family:Georgia,"Times New Roman",serif!important;font-size:calc(17px * var(--font-scale))!important;line-height:1.08!important;letter-spacing:0!important;color:#f0d9a2!important;white-space:nowrap!important}
 .hero.academy-home-brand .academy-home-motto{margin:6px auto 0!important;max-width:100%!important;text-align:center!important;color:rgba(255,255,255,.82)!important;font-size:calc(11.5px * var(--font-scale))!important;line-height:1.2!important}
 .hero.academy-home-brand .academy-home-divider{display:flex;align-items:center;justify-content:center;gap:7px;width:min(180px,70%);margin:7px auto 6px}
