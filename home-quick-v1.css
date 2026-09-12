@@ -1,0 +1,16 @@
+/* Home quick access refinement only */
+.hero.academy-home-brand + .section-head{margin-top:8px}
+.hero.academy-home-brand + .section-head + .grid-2{gap:14px}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-card{min-height:142px;padding:20px 18px;border-radius:24px;gap:14px}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-icon{width:54px;height:54px;border-radius:16px;font-size:28px}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-title{font-size:calc(19px * var(--font-scale));line-height:1.15}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-sub{margin-top:4px;font-size:calc(13px * var(--font-scale));line-height:1.25}
+.hero.academy-home-brand + .section-head + .grid-2 + .section-head{margin-top:24px}
+@media(max-width:430px){
+  .hero.academy-home-brand + .section-head + .grid-2{gap:12px}
+  .hero.academy-home-brand + .section-head + .grid-2 .quick-card{min-height:132px;padding:18px 16px;border-radius:22px}
+  .hero.academy-home-brand + .section-head + .grid-2 .quick-icon{width:50px;height:50px;border-radius:15px;font-size:26px}
+  .hero.academy-home-brand + .section-head + .grid-2 .quick-title{font-size:calc(18px * var(--font-scale))}
+  .hero.academy-home-brand + .section-head + .grid-2 .quick-sub{font-size:calc(12px * var(--font-scale))}
+  .hero.academy-home-brand + .section-head + .grid-2 + .section-head{margin-top:22px}
+}
