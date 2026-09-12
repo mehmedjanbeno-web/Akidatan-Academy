@@ -110,13 +110,19 @@
     try{
       const data=await api('/profile/load',{init_data:initData});
       profile=data.profile;
-      if(data.is_new){ready=true;await push()}
-      else{
+      if(data.is_new){
+        state.theme='dark';
+        state.fontScale=.9;
+        document.documentElement.dataset.theme='dark';
+        localSave();
+        ready=true;
+        await push();
+      }else{
         state.completed=Array.isArray(profile.completed)?profile.completed:[];
         state.favorites=Array.isArray(profile.favorites)?profile.favorites:[];
         state.language=profile.language==='ru'?'ru':'ce';
-        state.theme=profile.theme==='dark'?'dark':'light';
-        state.fontScale=Number(profile.font_scale)||1;
+        state.theme=profile.theme==='light'?'light':'dark';
+        state.fontScale=Number(profile.font_scale)||.9;
         document.documentElement.dataset.theme=state.theme;
         localSave();
         ready=true;
