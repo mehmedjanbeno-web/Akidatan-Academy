@@ -1,0 +1,37 @@
+/* Profile screen only: compact professional one-screen layout */
+.view:has(.profile-card){
+  min-height:calc(100dvh - 76px);
+  padding-top:10px;
+  padding-bottom:8px;
+  gap:8px;
+  align-content:start;
+}
+.view:has(.profile-card) .profile-card{padding:10px 12px;border-radius:17px;gap:10px}
+.view:has(.profile-card) .avatar{width:44px;height:44px;flex:0 0 44px;font-size:calc(16px * var(--font-scale))}
+.view:has(.profile-card) .profile-card h2{font-size:calc(19px * var(--font-scale));margin:0 0 2px}
+.view:has(.profile-card) .profile-card p{font-size:calc(12px * var(--font-scale));line-height:1.22}
+.view:has(.profile-card) .section-head{margin:2px 0 0}
+.view:has(.profile-card) .section-head h2{font-size:calc(16px * var(--font-scale))}
+.view:has(.profile-card) .progress-card{padding:11px 12px;border-radius:17px;gap:6px}
+.view:has(.profile-card) .progress-row strong{font-size:calc(20px * var(--font-scale))}
+.view:has(.profile-card) .progress-track{height:6px}
+.view:has(.profile-card) .settings-list{gap:0;padding:8px 12px 9px;border-radius:17px}
+.view:has(.profile-card) .setting-row{padding:8px 2px;gap:10px}
+.view:has(.profile-card) .setting-row strong{font-size:calc(15px * var(--font-scale));line-height:1.15}
+.view:has(.profile-card) .setting-row .quick-sub{font-size:calc(11px * var(--font-scale));line-height:1.18;margin-top:2px}
+.view:has(.profile-card) .setting-row:last-child{padding:8px 2px 1px;gap:8px}
+.view:has(.profile-card) .language-switch{gap:8px}
+.view:has(.profile-card) .language-switch .secondary-btn{min-height:42px;padding:8px;border-radius:12px;font-size:calc(14px * var(--font-scale))}
+.view:has(.profile-card) .secondary-btn{min-height:42px;padding:8px 12px}
+.view:has(.profile-card) .font-value{min-width:64px}
+.view:has(.profile-card) .toggle{width:42px;height:25px;padding:3px}
+.view:has(.profile-card) .toggle:after{width:19px;height:19px}
+@media(max-width:430px){
+  .view:has(.profile-card){padding-top:8px;gap:7px}
+  .view:has(.profile-card) .profile-card{padding:9px 11px}
+  .view:has(.profile-card) .avatar{width:42px;height:42px;flex-basis:42px}
+  .view:has(.profile-card) .progress-card{padding:10px 11px}
+  .view:has(.profile-card) .settings-list{padding:7px 11px 8px}
+  .view:has(.profile-card) .setting-row{padding:7px 2px}
+  .view:has(.profile-card) .language-switch .secondary-btn{min-height:40px}
+}
