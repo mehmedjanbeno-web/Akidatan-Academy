@@ -11,6 +11,13 @@
 .lesson-action-btn.favorite-btn{font-size:0!important}
 .lesson-action-btn.favorite-btn.is-active{background:color-mix(in srgb,var(--gold) 16%,var(--surface-2))!important;border-color:color-mix(in srgb,var(--gold) 55%,var(--line))!important}
 .lesson-action-btn.favorite-btn.is-active svg{width:25px;height:25px}
+.lesson-card-v2.locked{opacity:.52;filter:saturate(.55)}
+.lesson-card-v2.locked .lesson-open{cursor:default}
+.lesson-card-v2.locked .badge{opacity:.75}
+.lesson-lock{width:43px;height:43px;display:grid;place-items:center;border-radius:13px;border:1px solid var(--line);background:var(--surface-2);color:var(--muted)}
+.lesson-lock svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.lesson-card-v2.completed{border-color:color-mix(in srgb,var(--gold) 65%,var(--line))!important;background:color-mix(in srgb,var(--gold) 9%,var(--surface))!important;box-shadow:0 0 0 1px color-mix(in srgb,var(--gold) 20%,transparent)}
+.lesson-card-v2.completed .badge{background:color-mix(in srgb,var(--gold) 22%,var(--surface-2))!important;border-color:color-mix(in srgb,var(--gold) 55%,var(--line))!important}
 .lesson-notes-wrap{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
 .lesson-note-toggle{width:100%;min-height:58px;display:flex;align-items:center;justify-content:center;gap:12px;padding:14px 18px;border:2px solid color-mix(in srgb,var(--gold) 65%,var(--line));border-radius:16px;background:color-mix(in srgb,var(--gold) 12%,var(--surface-2));color:var(--text);font:inherit;font-size:calc(18px * var(--font-scale));font-weight:900}
 .lesson-note-toggle[hidden]{display:none!important}
@@ -25,12 +32,10 @@
 .lesson-note-text:focus{border-color:var(--gold);box-shadow:0 0 0 4px color-mix(in srgb,var(--gold) 16%,transparent)}
 .lesson-note-resize{position:absolute;right:5px;bottom:5px;width:50px;height:50px;display:grid;place-items:end;padding:0 7px 7px 0;border:0;background:transparent;color:#f7f7f2;touch-action:none;cursor:ns-resize;z-index:2}
 .lesson-note-resize svg{width:32px;height:32px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 2px rgba(0,0,0,.65))}
-.note-resizing{user-select:none!important}
-.note-resizing *{cursor:ns-resize!important}
+.note-resizing{user-select:none!important}.note-resizing *{cursor:ns-resize!important}
 .lesson-note-copy{width:100%;min-height:54px;margin-top:12px;display:flex!important;align-items:center!important;justify-content:center!important;gap:11px!important;font-size:calc(17px * var(--font-scale))!important;font-weight:900!important}
 .lesson-note-copy svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .lesson-note-actions{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:14px}
-.lesson-note-actions button{min-height:54px;font-size:calc(17px * var(--font-scale));font-weight:900}
-.lesson-note-delete:disabled{opacity:.42;pointer-events:none}
-@media(max-width:430px){.lesson-card-v2 .lesson-card-main{padding:14px;gap:10px}.lesson-card-actions{gap:7px}.lesson-action-btn{width:41px!important;height:41px!important;flex-basis:41px!important}.lesson-action-btn svg{width:23px;height:23px}.lesson-note-panel{padding:16px}.lesson-note-actions{grid-template-columns:1fr}.lesson-note-toggle{min-height:56px}.lesson-note-text{min-height:210px;height:210px}.lesson-note-resize{right:4px;bottom:4px;width:52px;height:52px}.lesson-note-resize svg{width:34px;height:34px}}
-@media(max-width:360px){.lesson-card-v2 .lesson-card-main{grid-template-columns:minmax(0,1fr) auto;padding:13px 12px}.lesson-card-actions{gap:5px}.lesson-action-btn{width:38px!important;height:38px!important;flex-basis:38px!important}.lesson-action-btn svg{width:21px;height:21px}}
+.lesson-note-actions button{min-height:54px;font-size:calc(17px * var(--font-scale));font-weight:900}.lesson-note-delete:disabled{opacity:.42;pointer-events:none}
+@media(max-width:430px){.lesson-card-v2 .lesson-card-main{padding:14px;gap:10px}.lesson-card-actions{gap:7px}.lesson-action-btn,.lesson-lock{width:41px!important;height:41px!important;flex-basis:41px!important}.lesson-action-btn svg{width:23px;height:23px}.lesson-note-panel{padding:16px}.lesson-note-actions{grid-template-columns:1fr}.lesson-note-toggle{min-height:56px}.lesson-note-text{min-height:210px;height:210px}.lesson-note-resize{right:4px;bottom:4px;width:52px;height:52px}.lesson-note-resize svg{width:34px;height:34px}}
+@media(max-width:360px){.lesson-card-v2 .lesson-card-main{grid-template-columns:minmax(0,1fr) auto;padding:13px 12px}.lesson-card-actions{gap:5px}.lesson-action-btn,.lesson-lock{width:38px!important;height:38px!important;flex-basis:38px!important}.lesson-action-btn svg{width:21px;height:21px}}
