@@ -2,6 +2,7 @@
   const initData=window.Telegram?.WebApp?.initData||'';
   const tgUser=window.Telegram?.WebApp?.initDataUnsafe?.user||null;
   let profile=null;
+  let profilePhoto='';
   let ready=false;
   let timer=null;
 
@@ -9,6 +10,19 @@
     const r=await fetch(`${API}${path}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
     if(!r.ok)throw new Error(`Profile API ${r.status}`);
     return r.json();
+  }
+
+  async function loadPhoto(){
+    if(!initData)return;
+    try{
+      const r=await fetch(`${API}/profile/photo`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({init_data:initData})});
+      if(!r.ok)return;
+      const blob=await r.blob();
+      if(!blob.size)return;
+      if(profilePhoto.startsWith('blob:'))URL.revokeObjectURL(profilePhoto);
+      profilePhoto=URL.createObjectURL(blob);
+      if(state.route==='profile')render();
+    }catch(e){console.warn('Profile photo:',e)}
   }
 
   function localPayload(){
@@ -37,8 +51,8 @@
     if(!card)return;
     const name=[user.first_name,user.last_name].filter(Boolean).join(' ')||'Telegram';
     const username=user.username?`@${user.username}`:'';
-    const photo=user.photo_url||'';
-    const avatar=photo?`<img src="${escapeHtml(photo)}" alt="" style="width:54px;height:54px;border-radius:50%;object-fit:cover">`:`<div class="avatar">${escapeHtml((user.first_name||'ӀА').slice(0,2))}</div>`;
+    const photo=profilePhoto||user.photo_url||'';
+    const avatar=photo?`<img src="${escapeHtml(photo)}" alt="" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex:0 0 72px">`:`<div class="avatar">${escapeHtml((user.first_name||'ӀА').slice(0,2))}</div>`;
     card.innerHTML=`${avatar}<div><h3 style="margin:0">${escapeHtml(name)}</h3>${username?`<p style="margin:5px 0 0;color:var(--muted)">${escapeHtml(username)}</p>`:''}<p style="margin:5px 0 0;color:var(--muted)">${t('academyStudent')}</p></div>`;
   };
 
@@ -61,6 +75,7 @@
         ready=true;
       }
       render();
+      loadPhoto();
     }catch(e){console.warn('Profile load:',e)}
   }
 
