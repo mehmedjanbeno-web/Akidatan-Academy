@@ -5,6 +5,7 @@
   let profilePhoto='';
   let ready=false;
   let timer=null;
+  const SEQUENTIAL_MIGRATION_KEY='academy-sequential-v1-ready';
 
   async function api(path,body){
     const r=await fetch(`${API}${path}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
@@ -113,7 +114,9 @@
       if(data.is_new){
         state.theme='dark';
         state.fontScale=.9;
+        state.completed=[];
         document.documentElement.dataset.theme='dark';
+        localStorage.setItem(SEQUENTIAL_MIGRATION_KEY,'1');
         localSave();
         ready=true;
         await push();
@@ -124,8 +127,14 @@
         state.theme=profile.theme==='light'?'light':'dark';
         state.fontScale=Number(profile.font_scale)||.9;
         document.documentElement.dataset.theme=state.theme;
+        const needsSequentialReset=!localStorage.getItem(SEQUENTIAL_MIGRATION_KEY);
+        if(needsSequentialReset){
+          state.completed=[];
+          localStorage.setItem(SEQUENTIAL_MIGRATION_KEY,'1');
+        }
         localSave();
         ready=true;
+        if(needsSequentialReset)await push();
       }
       render();
       const custom=await loadCustomAvatar();
