@@ -1,0 +1,14 @@
+.hero.academy-home-brand{padding:24px 18px 20px!important;min-height:0!important;text-align:center!important;display:block!important}
+.hero.academy-home-brand .hero-kicker{display:none!important}
+.hero.academy-home-brand h2{margin:0 auto!important;max-width:none!important;width:100%!important;text-align:center!important;font-family:Georgia,"Times New Roman",serif!important;font-size:calc(25px * var(--font-scale))!important;line-height:1.16!important;letter-spacing:.01em!important;color:#f0d9a2!important;white-space:nowrap!important}
+.hero.academy-home-brand .academy-home-motto{margin:10px auto 0!important;max-width:100%!important;text-align:center!important;color:rgba(255,255,255,.82)!important;font-size:calc(15px * var(--font-scale))!important;line-height:1.35!important}
+.hero.academy-home-brand .academy-home-divider{display:flex;align-items:center;justify-content:center;gap:9px;width:min(230px,82%);margin:16px auto 14px}
+.hero.academy-home-brand .academy-home-divider::before,.hero.academy-home-brand .academy-home-divider::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(240,217,162,.75))}
+.hero.academy-home-brand .academy-home-divider::after{background:linear-gradient(90deg,rgba(240,217,162,.75),transparent)}
+.hero.academy-home-brand .academy-home-ornament{width:24px;height:18px;position:relative;flex:0 0 24px}
+.hero.academy-home-brand .academy-home-ornament::before,.hero.academy-home-brand .academy-home-ornament::after{content:"";position:absolute;top:4px;width:9px;height:9px;border:1.6px solid #d4b56e;transform:rotate(45deg)}
+.hero.academy-home-brand .academy-home-ornament::before{left:2px}.hero.academy-home-brand .academy-home-ornament::after{right:2px}
+.hero.academy-home-brand>p:not(.academy-home-motto){margin:0 0 14px!important;text-align:center!important}
+.hero.academy-home-brand .primary-btn{min-width:210px}
+@media(max-width:430px){.hero.academy-home-brand{padding-left:12px!important;padding-right:12px!important}.hero.academy-home-brand h2{font-size:calc(22px * var(--font-scale))!important;letter-spacing:0!important}.hero.academy-home-brand .academy-home-motto{font-size:calc(14px * var(--font-scale))!important}}
+@media(max-width:360px){.hero.academy-home-brand h2{font-size:calc(20px * var(--font-scale))!important}}
