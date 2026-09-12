@@ -3,7 +3,7 @@
     ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.7 4.35 13.4A5.15 5.15 0 0 1 11.6 6.1L12 6.5l.4-.4a5.15 5.15 0 0 1 7.25 7.3Z" fill="currentColor" stroke="currentColor"/></svg>`
     : `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.7 4.35 13.4A5.15 5.15 0 0 1 11.6 6.1L12 6.5l.4-.4a5.15 5.15 0 0 1 7.25 7.3Z"/></svg>`;
 
-  const downloadSvg=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 18v2h14v-2"/></svg>`;
+  const noteSvg=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9.5L19 7v13.5H6z"/><path d="M15.5 3.5V7H19M9 11h7M9 14.5h7M9 18h4.5"/></svg>`;
 
   lessonCard=function(l){
     const fav=state.favorites.includes(l.id);
@@ -17,75 +17,23 @@
         </button>
         <div class="lesson-card-actions">
           <button class="lesson-action-btn favorite-btn ${fav?'is-active':''}" data-favorite="${l.id}" aria-label="${fav?t('inFavorites'):t('toFavorites')}">${heartSvg(fav)}</button>
-          <button class="lesson-action-btn download-audio-btn" data-download-audio="${l.id}" aria-label="Скачать аудио" title="Скачать аудио">${downloadSvg()}</button>
+          <button class="lesson-action-btn lesson-note-btn" data-lesson-note="${l.id}" aria-label="Блокнот" title="Блокнот">${noteSvg()}</button>
         </div>
       </div>
     </article>`;
   };
 
-  function audioFileInfo(lesson,blob){
-    const type=(blob.type||'').toLowerCase();
-    const ext=type.includes('mpeg')?'mp3':type.includes('mp4')?'m4a':type.includes('ogg')?'ogg':'mp3';
-    const mime=blob.type||'audio/mpeg';
-    return {name:`${lesson.title}.${ext}`,mime,ext};
-  }
-
-  async function saveWithPicker(blob,file){
-    if(typeof window.showSaveFilePicker!=='function')return false;
-    try{
-      const handle=await window.showSaveFilePicker({
-        suggestedName:file.name,
-        types:[{description:'Аудио',accept:{[file.mime]:[`.${file.ext}`]}}]
-      });
-      const writable=await handle.createWritable();
-      await writable.write(blob);
-      await writable.close();
-      return true;
-    }catch(e){
-      if(e?.name==='AbortError')return true;
-      console.warn('Save picker:',e);
-      return false;
-    }
-  }
-
-  function browserDownload(blob,file){
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');
-    a.href=url;
-    a.download=file.name;
-    a.rel='noopener';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(()=>URL.revokeObjectURL(url),2500);
-  }
-
-  async function downloadAudio(id,button){
-    const lesson=lessons.find(x=>x.id===id);
-    if(!lesson||button?.dataset.busy==='1')return;
-    if(button){button.dataset.busy='1';button.classList.add('is-busy')}
-    try{
-      const r=await fetch(lesson.audio);
-      if(!r.ok)throw new Error(`HTTP ${r.status}`);
-      const blob=await r.blob();
-      const file=audioFileInfo(lesson,blob);
-      const handled=await saveWithPicker(blob,file);
-      if(!handled)browserDownload(blob,file);
-      haptic();
-    }catch(e){
-      console.warn('Audio download:',e);
-      window.open(lesson.audio,'_blank','noopener');
-    }finally{
-      if(button){delete button.dataset.busy;button.classList.remove('is-busy')}
-    }
-  }
-
   document.addEventListener('click',e=>{
-    const button=e.target.closest('[data-download-audio]');
+    const button=e.target.closest('[data-lesson-note]');
     if(!button)return;
     e.preventDefault();
     e.stopPropagation();
-    downloadAudio(button.dataset.downloadAudio,button);
+    const lesson=lessons.find(x=>x.id===button.dataset.lessonNote);
+    if(!lesson)return;
+    state.selectedLesson=lesson.id;
+    state.route='lesson';
+    render();
+    haptic();
   },true);
 
   render();
