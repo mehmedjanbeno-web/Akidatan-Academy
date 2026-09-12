@@ -23,6 +23,43 @@
     </article>`;
   };
 
+  function audioFileInfo(lesson,blob){
+    const type=(blob.type||'').toLowerCase();
+    const ext=type.includes('mpeg')?'mp3':type.includes('mp4')?'m4a':type.includes('ogg')?'ogg':'mp3';
+    const mime=blob.type||'audio/mpeg';
+    return {name:`${lesson.title}.${ext}`,mime,ext};
+  }
+
+  async function saveWithPicker(blob,file){
+    if(typeof window.showSaveFilePicker!=='function')return false;
+    try{
+      const handle=await window.showSaveFilePicker({
+        suggestedName:file.name,
+        types:[{description:'Аудио',accept:{[file.mime]:[`.${file.ext}`]}}]
+      });
+      const writable=await handle.createWritable();
+      await writable.write(blob);
+      await writable.close();
+      return true;
+    }catch(e){
+      if(e?.name==='AbortError')return true;
+      console.warn('Save picker:',e);
+      return false;
+    }
+  }
+
+  function browserDownload(blob,file){
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;
+    a.download=file.name;
+    a.rel='noopener';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),2500);
+  }
+
   async function downloadAudio(id,button){
     const lesson=lessons.find(x=>x.id===id);
     if(!lesson||button?.dataset.busy==='1')return;
@@ -31,16 +68,9 @@
       const r=await fetch(lesson.audio);
       if(!r.ok)throw new Error(`HTTP ${r.status}`);
       const blob=await r.blob();
-      const type=(blob.type||'').toLowerCase();
-      const ext=type.includes('mpeg')?'mp3':type.includes('mp4')?'m4a':type.includes('ogg')?'ogg':'mp3';
-      const url=URL.createObjectURL(blob);
-      const a=document.createElement('a');
-      a.href=url;
-      a.download=`${lesson.title}.${ext}`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(()=>URL.revokeObjectURL(url),1500);
+      const file=audioFileInfo(lesson,blob);
+      const handled=await saveWithPicker(blob,file);
+      if(!handled)browserDownload(blob,file);
       haptic();
     }catch(e){
       console.warn('Audio download:',e);
