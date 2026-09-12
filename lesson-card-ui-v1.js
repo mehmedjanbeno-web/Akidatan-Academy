@@ -93,15 +93,19 @@
   function syncHelp(id){
     const textarea=document.querySelector(`[data-note-text="${id}"]`);
     const help=document.querySelector(`[data-note-help="${id}"]`);
-    if(!textarea||!help)return;
-    help.hidden=Boolean(textarea.value.trim());
+    const panel=document.querySelector(`[data-note-panel="${id}"]`);
+    const toggle=document.querySelector(`[data-note-toggle="${id}"]`);
+    if(!textarea)return;
+    const hasText=Boolean(textarea.value.trim());
+    if(help)help.hidden=hasText;
+    if(toggle)toggle.hidden=Boolean(panel&&!panel.hidden&&hasText);
   }
 
   function closeNote(id){
     const panel=document.querySelector(`[data-note-panel="${id}"]`);
     const toggle=document.querySelector(`[data-note-toggle="${id}"]`);
     if(panel)panel.hidden=true;
-    if(toggle)toggle.setAttribute('aria-expanded','false');
+    if(toggle){toggle.hidden=false;toggle.setAttribute('aria-expanded','false')}
   }
 
   async function copyNote(id){
@@ -163,11 +167,12 @@
   document.addEventListener('click',e=>{
     const toggle=e.target.closest('[data-note-toggle]');
     if(toggle){
-      const panel=document.querySelector(`[data-note-panel="${toggle.dataset.noteToggle}"]`);
+      const id=toggle.dataset.noteToggle;
+      const panel=document.querySelector(`[data-note-panel="${id}"]`);
       if(panel){
         panel.hidden=!panel.hidden;
         toggle.setAttribute('aria-expanded',String(!panel.hidden));
-        if(!panel.hidden)panel.querySelector('textarea')?.focus();
+        if(!panel.hidden){panel.querySelector('textarea')?.focus();syncHelp(id)}
       }
       haptic();
       return;
