@@ -13,6 +13,7 @@
 .lesson-action-btn.favorite-btn.is-active svg{width:25px;height:25px}
 .lesson-notes-wrap{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
 .lesson-note-toggle{width:100%;min-height:58px;display:flex;align-items:center;justify-content:center;gap:12px;padding:14px 18px;border:2px solid color-mix(in srgb,var(--gold) 65%,var(--line));border-radius:16px;background:color-mix(in srgb,var(--gold) 12%,var(--surface-2));color:var(--text);font:inherit;font-size:calc(18px * var(--font-scale));font-weight:900}
+.lesson-note-toggle[hidden]{display:none!important}
 .lesson-note-toggle:active{transform:scale(.985)}
 .lesson-note-toggle svg{width:29px;height:29px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .lesson-note-panel{margin-top:14px;padding:18px;border:1px solid var(--line);border-radius:17px;background:var(--surface-2)}
