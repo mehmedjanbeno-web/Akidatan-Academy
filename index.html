@@ -17,7 +17,10 @@
     .icon-btn{width:52px!important;height:52px!important;flex:0 0 52px!important;border-radius:16px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;background:var(--surface)!important;border:1px solid var(--line)!important;color:var(--text)!important;overflow:hidden!important}
     .theme-symbol{display:block!important;width:30px!important;height:30px!important;line-height:30px!important;text-align:center!important;font-size:26px!important;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif!important;font-weight:400!important;letter-spacing:0!important;transform:none!important;white-space:nowrap!important}
     .icon-btn::before{content:none!important;display:none!important}
-    @media(max-width:380px){.eyebrow{font-size:calc(16px * var(--font-scale))!important}.brand-logo{width:42px!important;height:42px!important;flex-basis:42px!important}.topbar{padding-left:12px!important;padding-right:12px!important}.icon-btn{width:48px!important;height:48px!important;flex-basis:48px!important}.theme-symbol{font-size:25px!important}}
+    .link-btn[data-back]{justify-self:start;display:inline-flex!important;align-items:center;gap:8px;min-height:46px;padding:11px 16px!important;border-radius:14px!important;background:var(--surface)!important;border:1px solid var(--line)!important;color:var(--text)!important;font-size:calc(17px * var(--font-scale))!important;font-weight:850!important;box-shadow:0 5px 16px rgba(13,63,51,.10)!important;text-decoration:none!important;transition:transform .14s ease,background .14s ease}
+    .link-btn[data-back]:active{transform:scale(.97);background:var(--surface-2)!important}
+    :root[data-theme="dark"] .link-btn[data-back]{background:#153129!important;border-color:rgba(240,217,162,.22)!important;color:#f7f0df!important;box-shadow:0 5px 16px rgba(0,0,0,.22)!important}
+    @media(max-width:380px){.eyebrow{font-size:calc(16px * var(--font-scale))!important}.brand-logo{width:42px!important;height:42px!important;flex-basis:42px!important}.topbar{padding-left:12px!important;padding-right:12px!important}.icon-btn{width:48px!important;height:48px!important;flex-basis:48px!important}.theme-symbol{font-size:25px!important}.link-btn[data-back]{font-size:calc(16px * var(--font-scale))!important;padding:10px 14px!important}}
   </style>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
@@ -42,6 +45,6 @@
     </nav>
   </div>
   <template id="empty-template"><section class="card empty-state"><div class="empty-icon">✦</div><h2></h2><p></p></section></template>
-  <script src="app.js?v=age-contrast-20260912-1436"></script>
+  <script src="app.js?v=search-back-fix-20260912-1445"></script>
 </body>
 </html>
