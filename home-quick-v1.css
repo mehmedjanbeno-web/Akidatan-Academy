@@ -5,7 +5,7 @@
 .hero.academy-home-brand + .section-head + .grid-2 .quick-icon{width:46px;height:46px;border-radius:14px;font-size:24px}
 .hero.academy-home-brand + .section-head + .grid-2 .quick-title{font-size:calc(17px * var(--font-scale));line-height:1.08}
 .hero.academy-home-brand + .section-head + .grid-2 .quick-sub{margin-top:1px;font-size:calc(12px * var(--font-scale));line-height:1.12}
-.hero.academy-home-brand + .section-head + .grid-2 + .section-head{margin-top:8px;margin-bottom:5px}
+.hero.academy-home-brand + .section-head + .grid-2 + .section-head{margin-top:28px;margin-bottom:5px}
 .hero.academy-home-brand + .section-head + .grid-2 + .section-head + .progress-card{padding-top:12px;padding-bottom:12px}
 @media(max-width:430px){
   .hero.academy-home-brand + .section-head + .grid-2{gap:6px 8px}
@@ -13,5 +13,5 @@
   .hero.academy-home-brand + .section-head + .grid-2 .quick-icon{width:44px;height:44px;border-radius:13px;font-size:23px}
   .hero.academy-home-brand + .section-head + .grid-2 .quick-title{font-size:calc(16px * var(--font-scale))}
   .hero.academy-home-brand + .section-head + .grid-2 .quick-sub{font-size:calc(11.5px * var(--font-scale))}
-  .hero.academy-home-brand + .section-head + .grid-2 + .section-head{margin-top:7px}
+  .hero.academy-home-brand + .section-head + .grid-2 + .section-head{margin-top:26px}
 }
