@@ -5,7 +5,7 @@
 
   const noteSvg=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9.5L19 7v13.5H6z"/><path d="M15.5 3.5V7H19M9 11h7M9 14.5h7M9 18h4.5"/></svg>`;
   const copySvg=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>`;
-  const resizeSvg=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20h10V10M14 20l6-6M18 20l2-2"/></svg>`;
+  const resizeSvg=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11 11 20M20 15l-5 5M20 19l-1 1"/></svg>`;
   const NOTES_KEY='academy-lesson-notes-v1';
 
   const readNotes=()=>{
@@ -64,7 +64,8 @@
 
     const copy=noteText();
     const notes=readNotes();
-    const hasNote=Boolean((notes[lesson.id]||'').trim());
+    const noteValue=notes[lesson.id]||'';
+    const hasNote=Boolean(noteValue.trim());
     audioCard.insertAdjacentHTML('beforeend',`
       <div class="lesson-notes-wrap">
         <button class="lesson-note-toggle" type="button" data-note-toggle="${lesson.id}" aria-expanded="false">
@@ -72,7 +73,7 @@
         </button>
         <div class="lesson-note-panel" data-note-panel="${lesson.id}" hidden>
           <div class="lesson-note-title">${copy.title}</div>
-          <p class="lesson-note-help">${copy.help}</p>
+          <p class="lesson-note-help" data-note-help="${lesson.id}" ${hasNote?'hidden':''}>${copy.help}</p>
           <div class="lesson-note-editor">
             <textarea class="lesson-note-text" data-note-text="${lesson.id}" placeholder="${copy.placeholder}"></textarea>
             <button class="lesson-note-resize" type="button" data-note-resize="${lesson.id}" aria-label="Изменить размер блокнота" title="Изменить размер блокнота">${resizeSvg()}</button>
@@ -86,8 +87,15 @@
       </div>`);
 
     const textarea=audioCard.querySelector(`[data-note-text="${lesson.id}"]`);
-    if(textarea)textarea.value=notes[lesson.id]||'';
+    if(textarea)textarea.value=noteValue;
   };
+
+  function syncHelp(id){
+    const textarea=document.querySelector(`[data-note-text="${id}"]`);
+    const help=document.querySelector(`[data-note-help="${id}"]`);
+    if(!textarea||!help)return;
+    help.hidden=Boolean(textarea.value.trim());
+  }
 
   function closeNote(id){
     const panel=document.querySelector(`[data-note-panel="${id}"]`);
@@ -146,6 +154,12 @@
   document.addEventListener('pointerup',stopResize,true);
   document.addEventListener('pointercancel',stopResize,true);
 
+  document.addEventListener('input',e=>{
+    const textarea=e.target.closest('[data-note-text]');
+    if(!textarea)return;
+    syncHelp(textarea.dataset.noteText);
+  },true);
+
   document.addEventListener('click',e=>{
     const toggle=e.target.closest('[data-note-toggle]');
     if(toggle){
@@ -160,10 +174,7 @@
     }
 
     const copyBtn=e.target.closest('[data-note-copy]');
-    if(copyBtn){
-      copyNote(copyBtn.dataset.noteCopy);
-      return;
-    }
+    if(copyBtn){copyNote(copyBtn.dataset.noteCopy);return}
 
     const saveBtn=e.target.closest('[data-note-save]');
     if(saveBtn){
@@ -189,6 +200,7 @@
       writeNotes(notes);
       const textarea=document.querySelector(`[data-note-text="${id}"]`);
       if(textarea)textarea.value='';
+      syncHelp(id);
       deleteBtn.disabled=true;
       closeNote(id);
       toast(noteText().removed);
