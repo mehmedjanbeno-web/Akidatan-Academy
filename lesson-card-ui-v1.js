@@ -4,6 +4,7 @@
     : `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.7 4.35 13.4A5.15 5.15 0 0 1 11.6 6.1L12 6.5l.4-.4a5.15 5.15 0 0 1 7.25 7.3Z"/></svg>`;
 
   const noteSvg=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9.5L19 7v13.5H6z"/><path d="M15.5 3.5V7H19M9 11h7M9 14.5h7M9 18h4.5"/></svg>`;
+  const copySvg=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>`;
   const NOTES_KEY='academy-lesson-notes-v1';
 
   const readNotes=()=>{
@@ -18,7 +19,10 @@
     save:'Ӏалашдан',
     remove:'ДӀадаккха',
     saved:'Ӏалашдина',
-    removed:'ДӀадаьккхина'
+    removed:'ДӀадаьккхина',
+    copy:'Копировать всё',
+    copied:'Скопировано',
+    empty:'Блокнот пуст'
   }:{
     button:'Блокнот',
     title:'Блокнот урока',
@@ -27,7 +31,10 @@
     save:'Сохранить',
     remove:'Удалить запись',
     saved:'Запись сохранена',
-    removed:'Запись удалена'
+    removed:'Запись удалена',
+    copy:'Копировать всё',
+    copied:'Скопировано',
+    empty:'Блокнот пуст'
   };
 
   lessonCard=function(l){
@@ -66,6 +73,7 @@
           <div class="lesson-note-title">${copy.title}</div>
           <p class="lesson-note-help">${copy.help}</p>
           <textarea class="lesson-note-text" data-note-text="${lesson.id}" placeholder="${copy.placeholder}"></textarea>
+          <button class="secondary-btn lesson-note-copy" type="button" data-note-copy="${lesson.id}">${copySvg()}<span>${copy.copy}</span></button>
           <div class="lesson-note-actions">
             <button class="primary-btn lesson-note-save" type="button" data-note-save="${lesson.id}">${copy.save}</button>
             <button class="secondary-btn lesson-note-delete" type="button" data-note-delete="${lesson.id}" ${hasNote?'':'disabled'}>${copy.remove}</button>
@@ -84,6 +92,29 @@
     if(toggle)toggle.setAttribute('aria-expanded','false');
   }
 
+  async function copyNote(id){
+    const textarea=document.querySelector(`[data-note-text="${id}"]`);
+    if(!textarea)return;
+    const text=textarea.value;
+    if(!text.trim()){toast(noteText().empty);return}
+    try{
+      if(navigator.clipboard?.writeText){
+        await navigator.clipboard.writeText(text);
+      }else{
+        textarea.focus();
+        textarea.select();
+        document.execCommand('copy');
+        textarea.setSelectionRange(text.length,text.length);
+      }
+      toast(noteText().copied);
+      haptic();
+    }catch(_){
+      textarea.focus();
+      textarea.select();
+      try{document.execCommand('copy');toast(noteText().copied);haptic()}catch(__){}
+    }
+  }
+
   document.addEventListener('click',e=>{
     const toggle=e.target.closest('[data-note-toggle]');
     if(toggle){
@@ -94,6 +125,12 @@
         if(!panel.hidden)panel.querySelector('textarea')?.focus();
       }
       haptic();
+      return;
+    }
+
+    const copyBtn=e.target.closest('[data-note-copy]');
+    if(copyBtn){
+      copyNote(copyBtn.dataset.noteCopy);
       return;
     }
 
