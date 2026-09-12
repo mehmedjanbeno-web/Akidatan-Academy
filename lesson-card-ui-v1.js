@@ -4,6 +4,12 @@
     : `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.7 4.35 13.4A5.15 5.15 0 0 1 11.6 6.1L12 6.5l.4-.4a5.15 5.15 0 0 1 7.25 7.3Z"/></svg>`;
 
   const noteSvg=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9.5L19 7v13.5H6z"/><path d="M15.5 3.5V7H19M9 11h7M9 14.5h7M9 18h4.5"/></svg>`;
+  const NOTES_KEY='academy-lesson-notes-v1';
+
+  const readNotes=()=>{
+    try{return JSON.parse(localStorage.getItem(NOTES_KEY)||'{}')||{}}catch(_){return {}}
+  };
+  const writeNotes=notes=>localStorage.setItem(NOTES_KEY,JSON.stringify(notes));
 
   lessonCard=function(l){
     const fav=state.favorites.includes(l.id);
@@ -17,23 +23,76 @@
         </button>
         <div class="lesson-card-actions">
           <button class="lesson-action-btn favorite-btn ${fav?'is-active':''}" data-favorite="${l.id}" aria-label="${fav?t('inFavorites'):t('toFavorites')}">${heartSvg(fav)}</button>
-          <button class="lesson-action-btn lesson-note-btn" data-lesson-note="${l.id}" aria-label="Блокнот" title="Блокнот">${noteSvg()}</button>
         </div>
       </div>
     </article>`;
   };
 
+  const baseRenderLesson=renderLesson;
+  renderLesson=function(){
+    baseRenderLesson();
+    const lesson=lessons.find(x=>x.id===state.selectedLesson)||lessons[0];
+    const audioCard=document.querySelector('.lesson-screen .card');
+    if(!audioCard||audioCard.querySelector('[data-note-toggle]'))return;
+
+    const notes=readNotes();
+    const hasNote=Boolean((notes[lesson.id]||'').trim());
+    audioCard.insertAdjacentHTML('beforeend',`
+      <div class="lesson-notes-wrap">
+        <button class="lesson-note-toggle" type="button" data-note-toggle="${lesson.id}">
+          ${noteSvg()}<span>Блокнот</span>
+        </button>
+        <div class="lesson-note-panel" data-note-panel="${lesson.id}" hidden>
+          <div class="lesson-note-title">Блокнот урока</div>
+          <p class="lesson-note-help">Записывайте здесь важные мысли и заметки во время прослушивания урока. Нажмите «Сохранить», чтобы запись осталась на этом устройстве.</p>
+          <textarea class="lesson-note-text" data-note-text="${lesson.id}" placeholder="Напишите заметку к этому уроку..."></textarea>
+          <div class="lesson-note-actions">
+            <button class="primary-btn lesson-note-save" type="button" data-note-save="${lesson.id}">Сохранить</button>
+            <button class="secondary-btn lesson-note-delete" type="button" data-note-delete="${lesson.id}" ${hasNote?'':'disabled'}>Удалить запись</button>
+          </div>
+        </div>
+      </div>`);
+
+    const textarea=audioCard.querySelector(`[data-note-text="${lesson.id}"]`);
+    if(textarea)textarea.value=notes[lesson.id]||'';
+  };
+
   document.addEventListener('click',e=>{
-    const button=e.target.closest('[data-lesson-note]');
-    if(!button)return;
-    e.preventDefault();
-    e.stopPropagation();
-    const lesson=lessons.find(x=>x.id===button.dataset.lessonNote);
-    if(!lesson)return;
-    state.selectedLesson=lesson.id;
-    state.route='lesson';
-    render();
-    haptic();
+    const toggle=e.target.closest('[data-note-toggle]');
+    if(toggle){
+      const panel=document.querySelector(`[data-note-panel="${toggle.dataset.noteToggle}"]`);
+      if(panel){panel.hidden=!panel.hidden;if(!panel.hidden)panel.querySelector('textarea')?.focus()}
+      haptic();
+      return;
+    }
+
+    const saveBtn=e.target.closest('[data-note-save]');
+    if(saveBtn){
+      const id=saveBtn.dataset.noteSave;
+      const textarea=document.querySelector(`[data-note-text="${id}"]`);
+      if(!textarea)return;
+      const notes=readNotes();
+      notes[id]=textarea.value;
+      writeNotes(notes);
+      const del=document.querySelector(`[data-note-delete="${id}"]`);
+      if(del)del.disabled=!textarea.value.trim();
+      toast('Запись сохранена');
+      haptic();
+      return;
+    }
+
+    const deleteBtn=e.target.closest('[data-note-delete]');
+    if(deleteBtn){
+      const id=deleteBtn.dataset.noteDelete;
+      const notes=readNotes();
+      delete notes[id];
+      writeNotes(notes);
+      const textarea=document.querySelector(`[data-note-text="${id}"]`);
+      if(textarea)textarea.value='';
+      deleteBtn.disabled=true;
+      toast('Запись удалена');
+      haptic();
+    }
   },true);
 
   render();
