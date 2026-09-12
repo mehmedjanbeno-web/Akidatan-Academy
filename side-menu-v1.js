@@ -17,12 +17,6 @@
   backdrop.className='side-menu-backdrop';
   backdrop.innerHTML=`<aside class="side-menu" role="dialog" aria-modal="true" aria-label="Меню Академии">
     <button class="side-menu-close" type="button" data-side-close aria-label="Закрыть">×</button>
-    <div class="side-menu-head">
-      <img class="side-menu-logo" src="https://t.me/i/userpic/320/AkidatanAcademyAppBot.jpg?v=2" alt="">
-      <div class="side-menu-title">ӀАКЪИДАТАН АКАДЕМИЯ</div>
-      <p class="side-menu-motto">Знание приближает к Аллаху</p>
-      <div class="side-menu-divider"></div>
-    </div>
     <div class="side-menu-list">
       ${item('profile',svg.profile,'Мой профиль')}
       ${item('teacher',svg.teacher,'Связь с учителем')}
