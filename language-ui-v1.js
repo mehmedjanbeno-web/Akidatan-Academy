@@ -5,7 +5,13 @@
   lessonCard=function(l){
     const original=l.title;
     l.title=lessonTitle({...l,title:original});
-    try{return baseLessonCard(l)}finally{l.title=original}
+    try{
+      let html=baseLessonCard(l);
+      if(state.language==='ru'){
+        html=html.replace(`<span class="badge">Урок ${l.number}</span>`,`<span class="badge">${original}</span>`);
+      }
+      return html;
+    }finally{l.title=original}
   };
 
   const baseRenderLesson=renderLesson;
