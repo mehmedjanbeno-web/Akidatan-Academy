@@ -1,16 +1,17 @@
-/* Home quick access refinement only */
-.hero.academy-home-brand + .section-head{margin-top:4px}
-.hero.academy-home-brand + .section-head + .grid-2{gap:10px}
-.hero.academy-home-brand + .section-head + .grid-2 .quick-card{min-height:116px;padding:16px 15px;border-radius:21px;gap:10px}
+/* Home quick access: large touch targets, compact dashboard spacing */
+.hero.academy-home-brand + .section-head{margin-top:2px;margin-bottom:7px}
+.hero.academy-home-brand + .section-head + .grid-2{gap:9px}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-card{min-height:112px;padding:15px 14px;border-radius:21px;gap:9px}
 .hero.academy-home-brand + .section-head + .grid-2 .quick-icon{width:46px;height:46px;border-radius:14px;font-size:24px}
-.hero.academy-home-brand + .section-head + .grid-2 .quick-title{font-size:calc(17px * var(--font-scale));line-height:1.12}
-.hero.academy-home-brand + .section-head + .grid-2 .quick-sub{margin-top:3px;font-size:calc(12px * var(--font-scale));line-height:1.2}
-.hero.academy-home-brand + .section-head + .grid-2 + .section-head{margin-top:15px}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-title{font-size:calc(17px * var(--font-scale));line-height:1.1}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-sub{margin-top:2px;font-size:calc(12px * var(--font-scale));line-height:1.15}
+.hero.academy-home-brand + .section-head + .grid-2 + .section-head{margin-top:12px;margin-bottom:7px}
+.hero.academy-home-brand + .section-head + .grid-2 + .section-head + .progress-card{padding-top:14px;padding-bottom:14px}
 @media(max-width:430px){
-  .hero.academy-home-brand + .section-head + .grid-2{gap:9px}
-  .hero.academy-home-brand + .section-head + .grid-2 .quick-card{min-height:112px;padding:15px 14px;border-radius:20px}
+  .hero.academy-home-brand + .section-head + .grid-2{gap:8px}
+  .hero.academy-home-brand + .section-head + .grid-2 .quick-card{min-height:108px;padding:14px 13px;border-radius:20px}
   .hero.academy-home-brand + .section-head + .grid-2 .quick-icon{width:44px;height:44px;border-radius:13px;font-size:23px}
   .hero.academy-home-brand + .section-head + .grid-2 .quick-title{font-size:calc(16px * var(--font-scale))}
   .hero.academy-home-brand + .section-head + .grid-2 .quick-sub{font-size:calc(11.5px * var(--font-scale))}
-  .hero.academy-home-brand + .section-head + .grid-2 + .section-head{margin-top:14px}
+  .hero.academy-home-brand + .section-head + .grid-2 + .section-head{margin-top:11px}
 }
