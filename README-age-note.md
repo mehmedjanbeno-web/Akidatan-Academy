@@ -1,0 +1,1 @@
+Course age label styling support.
