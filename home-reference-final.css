@@ -10,12 +10,12 @@
   background:#031b15!important;
 }
 
-/* Reference hero: no card, no hamburger, centered emblem/title */
+/* Reference hero: centered emblem/title, working side-menu button */
 .view:has(.academy-home-brand) .hero.academy-home-brand{
   position:relative!important;
   margin:0 -15px!important;
-  padding:18px 18px 18px!important;
-  min-height:268px!important;
+  padding:18px 18px 20px!important;
+  min-height:286px!important;
   border-radius:0!important;
   border:0!important;
   box-shadow:none!important;
@@ -37,7 +37,24 @@
 }
 .view:has(.academy-home-brand) .hero.academy-home-brand::after{display:none!important}
 .view:has(.academy-home-brand) .hero-kicker{display:none!important}
-.view:has(.academy-home-brand) .academy-home-menu{display:none!important}
+.view:has(.academy-home-brand) .academy-home-menu{
+  display:grid!important;
+  position:absolute!important;
+  right:17px!important;
+  top:20px!important;
+  width:48px!important;
+  height:48px!important;
+  place-items:center!important;
+  padding:0!important;
+  border-radius:14px!important;
+  border:1px solid rgba(216,184,105,.44)!important;
+  background:rgba(4,45,36,.82)!important;
+  color:#f4e7c2!important;
+  box-shadow:none!important;
+  z-index:5!important;
+  pointer-events:auto!important;
+}
+.view:has(.academy-home-brand) .academy-home-menu svg{width:25px!important;height:25px!important;fill:none!important;stroke:currentColor!important;stroke-width:2.4!important;stroke-linecap:round!important}
 
 .view:has(.academy-home-brand) .academy-home-logo{
   position:relative!important;
@@ -107,21 +124,23 @@
 .view:has(.academy-home-brand)>.section-head{display:none!important}
 .view:has(.academy-home-brand)>.progress-card{display:none!important}
 
-/* 2x2 quick dashboard */
+/* 2x2 quick dashboard — taller so the home screen is filled like the reference */
 .view:has(.academy-home-brand) .grid-2{
   display:grid!important;
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(2,minmax(148px,1fr))!important;
   gap:10px!important;
   margin-top:10px!important;
+  min-height:306px!important;
 }
 .view:has(.academy-home-brand) .quick-card{
   position:static!important;
   top:auto!important;
-  min-height:119px!important;
-  padding:13px 12px!important;
+  min-height:148px!important;
+  padding:14px 12px!important;
   justify-content:flex-start!important;
   align-items:flex-start!important;
-  gap:8px!important;
+  gap:10px!important;
   text-align:left!important;
   border-radius:14px!important;
   background:linear-gradient(160deg,#074236,#06372d)!important;
@@ -130,27 +149,27 @@
   color:#f7f0df!important;
 }
 .view:has(.academy-home-brand) .quick-icon{
-  width:39px!important;height:39px!important;
+  width:42px!important;height:42px!important;
   display:grid!important;place-items:center!important;
-  flex:0 0 39px!important;
-  border-radius:10px!important;
+  flex:0 0 42px!important;
+  border-radius:11px!important;
   background:#0d4b3e!important;
   border:1px solid rgba(216,184,105,.34)!important;
   color:#e1c67d!important;
-  font-size:22px!important;
+  font-size:23px!important;
   line-height:1!important;
 }
 .view:has(.academy-home-brand) .quick-title{
   margin-top:1px!important;
   color:#fff9ea!important;
-  font-size:calc(14px * var(--font-scale))!important;
+  font-size:calc(15px * var(--font-scale))!important;
   line-height:1.07!important;
   font-weight:850!important;
 }
 .view:has(.academy-home-brand) .quick-sub{
-  margin-top:3px!important;
+  margin-top:4px!important;
   color:#b8c7c1!important;
-  font-size:calc(10px * var(--font-scale))!important;
+  font-size:calc(10.5px * var(--font-scale))!important;
   line-height:1.18!important;
 }
 
@@ -181,8 +200,10 @@ body:has(.academy-home-brand) .nav-item small{
 
 @media(max-width:380px){
   .view:has(.academy-home-brand){padding-left:11px!important;padding-right:11px!important}
-  .view:has(.academy-home-brand) .hero.academy-home-brand{margin-left:-11px!important;margin-right:-11px!important;min-height:255px!important;padding-top:14px!important}
+  .view:has(.academy-home-brand) .hero.academy-home-brand{margin-left:-11px!important;margin-right:-11px!important;min-height:270px!important;padding-top:14px!important}
   .view:has(.academy-home-brand) .academy-home-logo{width:70px!important;height:70px!important;margin-bottom:7px!important}
+  .view:has(.academy-home-brand) .academy-home-menu{right:12px!important;top:16px!important;width:46px!important;height:46px!important}
   .view:has(.academy-home-brand) .hero h2{font-size:calc(20px * var(--font-scale))!important;width:min(290px,94%)!important}
-  .view:has(.academy-home-brand) .quick-card{min-height:111px!important;padding:11px!important}
+  .view:has(.academy-home-brand) .grid-2{grid-template-rows:repeat(2,minmax(138px,1fr))!important;min-height:286px!important}
+  .view:has(.academy-home-brand) .quick-card{min-height:138px!important;padding:12px!important}
 }
