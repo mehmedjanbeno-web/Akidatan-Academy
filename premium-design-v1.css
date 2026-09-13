@@ -1,0 +1,58 @@
+/* Premium Academy visual layer — CSS only. Existing routes, text and logic stay untouched. */
+:root[data-theme="dark"]{
+  --bg:#061713;--surface:#0b2a22;--surface-2:#143a30;--text:#fff8e8;--muted:#aebdb7;
+  --primary:#d7bd78;--primary-2:#f1d58c;--gold:#d8b867;--line:rgba(216,184,103,.22);
+  --shadow:0 10px 28px rgba(0,0,0,.22)
+}
+:root:not([data-theme="dark"]){--bg:#f6f0e2;--surface:#fffaf0;--surface-2:#eee3c9;--line:rgba(84,65,28,.14)}
+html,body,.app-shell{background:var(--bg)}
+.app-shell{box-shadow:0 0 50px rgba(0,0,0,.12)}
+.view{padding-left:14px;padding-right:14px}
+.card,.course-card,.lesson-card,.settings-list{border-color:var(--line);box-shadow:var(--shadow)}
+.bottom-nav{background:color-mix(in srgb,var(--surface) 97%,transparent);border-top-color:var(--line);padding-top:7px}
+.nav-item{min-height:55px;border-radius:15px}.nav-item.active{background:rgba(216,184,103,.10);color:var(--primary-2)}
+
+/* Home: compact enough for one phone screen, same existing content/actions. */
+.view:has(.academy-home-brand){min-height:calc(100dvh - 72px);padding:0 14px 7px;gap:0;align-content:space-between;grid-template-rows:auto auto auto auto auto}
+.hero.academy-home-brand{margin:0 -14px!important;padding:10px 76px 9px!important;border-radius:0 0 24px 24px!important;background:linear-gradient(145deg,#07503f,#0b6a50)!important;box-shadow:0 12px 30px rgba(0,0,0,.22)!important}
+.hero.academy-home-brand .academy-home-logo{left:12px;top:10px;width:48px;height:48px;border:2px solid rgba(241,213,140,.72)}
+.hero.academy-home-brand .academy-home-menu{right:12px;top:10px;width:48px;height:48px;border-radius:16px;border-color:rgba(241,213,140,.45);background:rgba(3,35,28,.56)}
+.hero.academy-home-brand h2{font-size:calc(16px * var(--font-scale))!important;color:#f1d58c!important}
+.hero.academy-home-brand .academy-home-motto{font-size:calc(11px * var(--font-scale))!important}
+.hero.academy-home-brand .academy-home-divider{margin:6px auto 5px}
+.hero.academy-home-brand>p:not(.academy-home-motto){font-size:calc(11.5px * var(--font-scale))!important;margin-bottom:6px!important}
+.hero.academy-home-brand .primary-btn{min-height:39px!important;min-width:190px;background:#f6dfa3!important;border-radius:13px!important;box-shadow:0 5px 14px rgba(0,0,0,.13)}
+.hero.academy-home-brand + .section-head{margin:7px 0 5px}
+.hero.academy-home-brand + .section-head h2,.hero.academy-home-brand + .section-head + .grid-2 + .section-head h2{font-size:calc(17px * var(--font-scale))}
+.hero.academy-home-brand + .section-head + .grid-2{gap:8px!important}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-card{top:auto!important;min-height:92px!important;padding:11px 12px!important;border-radius:18px!important;background:linear-gradient(145deg,color-mix(in srgb,var(--surface) 97%,#0c5b48),var(--surface))}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-icon{width:42px!important;height:42px!important;border-radius:13px!important;border:1px solid rgba(216,184,103,.12);background:rgba(216,184,103,.10)}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-title{font-size:calc(16px * var(--font-scale))!important}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-sub{font-size:calc(11px * var(--font-scale))!important}
+.hero.academy-home-brand + .section-head + .grid-2 + .section-head{margin:7px 0 5px!important}
+.hero.academy-home-brand + .section-head + .grid-2 + .section-head + .progress-card{padding:11px 13px!important;border-radius:18px;gap:7px}
+
+/* Courses/search: same real course and the same real 20 lesson titles. */
+.search-wrap input{min-height:48px;border-color:var(--line);border-radius:16px;background:var(--surface);box-shadow:0 6px 18px rgba(0,0,0,.10)}
+.course-list,.lesson-list{gap:8px}
+.course-card,.lesson-card{border-radius:17px;padding:12px 13px;background:linear-gradient(145deg,color-mix(in srgb,var(--surface) 98%,#0e654f),var(--surface));transition:transform .14s ease,border-color .14s ease}
+.course-card:active,.lesson-card:active{transform:scale(.985)}
+.badge{background:rgba(216,184,103,.11);border:1px solid rgba(216,184,103,.12)}
+
+/* Keep content clear of fixed bottom navigation. */
+.view{padding-bottom:84px}.view:has(.academy-home-brand){padding-bottom:76px}
+@media(max-width:430px){
+ .view:has(.academy-home-brand){padding-left:12px;padding-right:12px;padding-bottom:74px}
+ .hero.academy-home-brand{margin-left:-12px!important;margin-right:-12px!important;padding-left:70px!important;padding-right:70px!important}
+ .hero.academy-home-brand .academy-home-logo{left:10px;width:46px;height:46px}.hero.academy-home-brand .academy-home-menu{right:10px;width:46px;height:46px}
+ .hero.academy-home-brand + .section-head + .grid-2 .quick-card{min-height:88px!important;padding:9px 11px!important}
+ .hero.academy-home-brand + .section-head + .grid-2 .quick-icon{width:39px!important;height:39px!important}
+}
+@media(max-height:760px){
+ .hero.academy-home-brand{padding-top:7px!important;padding-bottom:7px!important}
+ .hero.academy-home-brand .academy-home-divider{margin-top:4px;margin-bottom:4px}
+ .hero.academy-home-brand + .section-head{margin-top:4px}.hero.academy-home-brand + .section-head + .grid-2{gap:6px!important}
+ .hero.academy-home-brand + .section-head + .grid-2 .quick-card{min-height:80px!important;padding:8px 10px!important}
+ .hero.academy-home-brand + .section-head + .grid-2 .quick-icon{width:35px!important;height:35px!important}
+ .hero.academy-home-brand + .section-head + .grid-2 + .section-head{margin-top:4px!important}
+}
