@@ -32,3 +32,33 @@ body{color-scheme:dark}
 :root[data-theme="dark"] .age-label,
 :root[data-theme="dark"] [data-age-label]{color:#123d32}
 @media(max-width:430px){.view{background:var(--bg)!important}}
+
+/* HOME: use the space that was previously left empty below progress. Keep the
+   Telegram bottom navigation fixed; only the five existing home sections grow. */
+.view:has(.academy-home-brand){
+  min-height:calc(100dvh - 4px)!important;
+  height:calc(100dvh - 4px)!important;
+  padding-bottom:82px!important;
+  grid-template-rows:auto auto minmax(0,1fr) auto minmax(0,1fr)!important;
+  align-content:stretch!important;
+}
+.view:has(.academy-home-brand)>.hero.academy-home-brand{min-height:0!important;height:auto!important}
+.view:has(.academy-home-brand)>.section-head{min-height:24px!important;align-self:center!important}
+.view:has(.academy-home-brand)>.grid-2{
+  min-height:0!important;height:100%!important;
+  grid-template-rows:repeat(2,minmax(0,1fr))!important;
+  align-self:stretch!important;
+}
+.view:has(.academy-home-brand)>.grid-2 .quick-card{
+  min-height:0!important;height:100%!important;
+  justify-content:space-between!important;
+}
+.view:has(.academy-home-brand)>.section-head+.grid-2+.section-head{margin-bottom:0!important}
+.view:has(.academy-home-brand)>.progress-card{
+  min-height:0!important;height:100%!important;
+  align-self:stretch!important;
+}
+@media(max-width:430px){
+  .view:has(.academy-home-brand){height:calc(100dvh - 2px)!important;min-height:0!important;padding-bottom:82px!important;grid-template-rows:auto auto minmax(0,1fr) auto minmax(0,1fr)!important}
+  .view:has(.academy-home-brand)>.grid-2{gap:8px!important}
+}
