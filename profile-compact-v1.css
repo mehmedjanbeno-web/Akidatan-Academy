@@ -1,37 +1,158 @@
-/* Profile screen only: compact professional one-screen layout */
-.view:has(.profile-card){
+/* Akidatan Academy — profile screen compact one-screen layout.
+   Visual CSS only. Profile functionality and controls remain unchanged. */
+.view:has(.profile-row){
   min-height:calc(100dvh - 76px);
-  padding-top:10px;
-  padding-bottom:8px;
-  gap:8px;
-  align-content:start;
+  height:calc(100dvh - 76px);
+  box-sizing:border-box;
+  padding:7px 12px 5px;
+  gap:6px;
+  overflow:hidden;
+  align-content:stretch;
 }
-.view:has(.profile-card) .profile-card{padding:10px 12px;border-radius:17px;gap:10px}
-.view:has(.profile-card) .avatar{width:44px;height:44px;flex:0 0 44px;font-size:calc(16px * var(--font-scale))}
-.view:has(.profile-card) .profile-card h2{font-size:calc(19px * var(--font-scale));margin:0 0 2px}
-.view:has(.profile-card) .profile-card p{font-size:calc(12px * var(--font-scale));line-height:1.22}
-.view:has(.profile-card) .section-head{margin:2px 0 0}
-.view:has(.profile-card) .section-head h2{font-size:calc(16px * var(--font-scale))}
-.view:has(.profile-card) .progress-card{padding:11px 12px;border-radius:17px;gap:6px}
-.view:has(.profile-card) .progress-row strong{font-size:calc(20px * var(--font-scale))}
-.view:has(.profile-card) .progress-track{height:6px}
-.view:has(.profile-card) .settings-list{gap:0;padding:8px 12px 9px;border-radius:17px}
-.view:has(.profile-card) .setting-row{padding:8px 2px;gap:10px}
-.view:has(.profile-card) .setting-row strong{font-size:calc(15px * var(--font-scale));line-height:1.15}
-.view:has(.profile-card) .setting-row .quick-sub{font-size:calc(11px * var(--font-scale));line-height:1.18;margin-top:2px}
-.view:has(.profile-card) .setting-row:last-child{padding:8px 2px 1px;gap:8px}
-.view:has(.profile-card) .language-switch{gap:8px}
-.view:has(.profile-card) .language-switch .secondary-btn{min-height:42px;padding:8px;border-radius:12px;font-size:calc(14px * var(--font-scale))}
-.view:has(.profile-card) .secondary-btn{min-height:42px;padding:8px 12px}
-.view:has(.profile-card) .font-value{min-width:64px}
-.view:has(.profile-card) .toggle{width:42px;height:25px;padding:3px}
-.view:has(.profile-card) .toggle:after{width:19px;height:19px}
+
+/* Back button */
+.view:has(.profile-row) > .link-btn[data-back]{
+  min-height:46px!important;
+  height:46px;
+  padding:8px 14px!important;
+  border-radius:14px!important;
+  font-size:calc(17px * var(--font-scale))!important;
+}
+
+/* Student card — compact but keeps avatar/name/account information. */
+.view:has(.profile-row) .profile-row{
+  min-height:0;
+  height:116px;
+  box-sizing:border-box;
+  padding:10px 14px!important;
+  border-radius:18px;
+  gap:14px;
+  align-items:center;
+  flex-shrink:0;
+}
+.view:has(.profile-row) .profile-row .avatar{
+  width:70px!important;
+  height:70px!important;
+  flex:0 0 70px!important;
+  font-size:calc(22px * var(--font-scale))!important;
+}
+.view:has(.profile-row) .profile-row h2,
+.view:has(.profile-row) .profile-row h3{
+  font-size:calc(20px * var(--font-scale))!important;
+  line-height:1.08!important;
+  margin:0!important;
+}
+.view:has(.profile-row) .profile-row p{
+  font-size:calc(13px * var(--font-scale))!important;
+  line-height:1.15!important;
+  margin:3px 0 0!important;
+}
+
+/* Section heading */
+.view:has(.profile-row) .section-head{
+  min-height:30px;
+  height:30px;
+  margin:0!important;
+  padding:0 2px;
+  align-items:center;
+  flex-shrink:0;
+}
+.view:has(.profile-row) .section-head h2{
+  font-size:calc(17px * var(--font-scale))!important;
+  line-height:1.1!important;
+  margin:0!important;
+}
+
+/* Progress card — compact version used by profile screen. */
+.view:has(.profile-row) .progress-card{
+  min-height:0;
+  height:122px;
+  box-sizing:border-box;
+  padding:12px 14px!important;
+  border-radius:18px;
+  gap:6px;
+  flex-shrink:0;
+}
+.view:has(.profile-row) .progress-card .progress-row span{
+  font-size:calc(16px * var(--font-scale));
+}
+.view:has(.profile-row) .progress-card .progress-row strong{
+  font-size:calc(22px * var(--font-scale));
+}
+.view:has(.profile-row) .progress-track{height:7px!important;margin:4px 0!important}
+.view:has(.profile-row) .progress-card .quick-sub{font-size:calc(12px * var(--font-scale));line-height:1.1}
+
+/* Settings block — all controls stay visible without scrolling. */
+.view:has(.profile-row) .settings-list{
+  min-height:0;
+  height:270px;
+  box-sizing:border-box;
+  padding:4px 12px 5px!important;
+  border-radius:18px;
+  gap:0;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.view:has(.profile-row) .settings-list .setting-row{
+  min-height:0;
+  height:86px;
+  box-sizing:border-box;
+  padding:7px 2px!important;
+  gap:8px;
+  align-items:center;
+}
+.view:has(.profile-row) .settings-list .setting-row + .setting-row{
+  border-top:1px solid var(--line);
+}
+.view:has(.profile-row) .settings-list .setting-row strong{
+  font-size:calc(15px * var(--font-scale))!important;
+  line-height:1.1!important;
+}
+.view:has(.profile-row) .settings-list .setting-row .quick-sub{
+  font-size:calc(11px * var(--font-scale))!important;
+  line-height:1.1!important;
+  margin-top:2px!important;
+}
+.view:has(.profile-row) .icon-btn{
+  width:48px!important;
+  height:48px!important;
+  flex:0 0 48px;
+}
+.view:has(.profile-row) .theme-symbol{font-size:24px!important}
+.view:has(.profile-row) .font-controls{gap:4px!important}
+.view:has(.profile-row) .font-controls .secondary-btn{
+  min-height:42px!important;
+  height:42px!important;
+  padding:7px 10px!important;
+  border-radius:12px!important;
+  font-size:calc(15px * var(--font-scale))!important;
+}
+.view:has(.profile-row) .font-value{min-width:74px!important}
+.view:has(.profile-row) .language-switch{gap:5px!important}
+.view:has(.profile-row) .language-switch .secondary-btn{
+  min-height:40px!important;
+  height:40px!important;
+  padding:7px 9px!important;
+  border-radius:11px!important;
+  font-size:calc(12px * var(--font-scale))!important;
+}
+
 @media(max-width:430px){
-  .view:has(.profile-card){padding-top:8px;gap:7px}
-  .view:has(.profile-card) .profile-card{padding:9px 11px}
-  .view:has(.profile-card) .avatar{width:42px;height:42px;flex-basis:42px}
-  .view:has(.profile-card) .progress-card{padding:10px 11px}
-  .view:has(.profile-card) .settings-list{padding:7px 11px 8px}
-  .view:has(.profile-card) .setting-row{padding:7px 2px}
-  .view:has(.profile-card) .language-switch .secondary-btn{min-height:40px}
+  .view:has(.profile-row){
+    padding:6px 10px 4px;
+    gap:5px;
+  }
+  .view:has(.profile-row) > .link-btn[data-back]{
+    min-height:44px!important;height:44px;
+    padding:7px 13px!important;
+  }
+  .view:has(.profile-row) .profile-row{height:106px;padding:8px 12px!important}
+  .view:has(.profile-row) .profile-row .avatar{width:62px!important;height:62px!important;flex-basis:62px!important}
+  .view:has(.profile-row) .progress-card{height:112px;padding:10px 12px!important}
+  .view:has(.profile-row) .section-head{height:28px;min-height:28px}
+  .view:has(.profile-row) .settings-list{height:255px;padding:3px 10px 4px!important}
+  .view:has(.profile-row) .settings-list .setting-row{height:82px;padding:6px 2px!important}
+  .view:has(.profile-row) .font-controls .secondary-btn{min-height:39px!important;height:39px!important;padding:6px 8px!important}
+  .view:has(.profile-row) .font-value{min-width:68px!important}
+  .view:has(.profile-row) .language-switch .secondary-btn{min-height:37px!important;height:37px!important;padding:6px 7px!important}
 }
