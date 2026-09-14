@@ -1,154 +1,27 @@
 (()=>{
   const initData=window.Telegram?.WebApp?.initData||'';
   const tgUser=window.Telegram?.WebApp?.initDataUnsafe?.user||null;
-  let profile=null;
-  let profilePhoto='';
-  let ready=false;
-  let timer=null;
+  let profile=null,profilePhoto='',ready=false,timer=null;
   const SEQUENTIAL_MIGRATION_KEY='academy-sequential-v1-ready';
-
-  async function api(path,body){
-    const r=await fetch(`${API}${path}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
-    if(!r.ok)throw new Error(`Profile API ${r.status}`);
-    return r.json();
-  }
-  function setPhotoBlob(blob){
-    if(!blob||!blob.size)return false;
-    if(profilePhoto.startsWith('blob:'))URL.revokeObjectURL(profilePhoto);
-    profilePhoto=URL.createObjectURL(blob);
-    if(state.route==='profile')render();
-    return true;
-  }
-  async function loadCustomAvatar(){
-    if(!initData)return false;
-    try{
-      const r=await fetch(`${API}/profile/avatar/get`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({init_data:initData})});
-      if(!r.ok)return false;
-      return setPhotoBlob(await r.blob());
-    }catch(e){console.warn('Custom avatar:',e);return false}
-  }
-  async function loadTelegramPhoto(){
-    if(!initData)return;
-    try{
-      const r=await fetch(`${API}/profile/photo`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({init_data:initData})});
-      if(!r.ok)return;
-      setPhotoBlob(await r.blob());
-    }catch(e){console.warn('Profile photo:',e)}
-  }
-  function imageToDataUrl(file){
-    return new Promise((resolve,reject)=>{
-      const img=new Image();
-      const url=URL.createObjectURL(file);
-      img.onload=()=>{
-        try{
-          const size=Math.min(img.naturalWidth,img.naturalHeight);
-          const sx=Math.max(0,(img.naturalWidth-size)/2);
-          const sy=Math.max(0,(img.naturalHeight-size)/2);
-          const canvas=document.createElement('canvas');
-          canvas.width=512;canvas.height=512;
-          const ctx=canvas.getContext('2d');
-          ctx.drawImage(img,sx,sy,size,size,0,0,512,512);
-          URL.revokeObjectURL(url);
-          resolve(canvas.toDataURL('image/jpeg',.86));
-        }catch(e){URL.revokeObjectURL(url);reject(e)}
-      };
-      img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error('image'))};
-      img.src=url;
-    });
-  }
-  async function uploadAvatar(file){
-    if(!file||!initData)return;
-    try{
-      const image=await imageToDataUrl(file);
-      await api('/profile/avatar',{init_data:initData,image});
-      await loadCustomAvatar();
-      haptic();
-    }catch(e){console.warn('Avatar upload:',e)}
-  }
-  function localPayload(){return {init_data:initData,completed:state.completed,favorites:state.favorites,language:state.language,theme:state.theme,font_scale:state.fontScale}}
+  async function api(path,body){const r=await fetch(`${API}${path}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});if(!r.ok)throw new Error(`Profile API ${r.status}`);return r.json()}
+  function setPhotoBlob(blob){if(!blob||!blob.size)return false;if(profilePhoto.startsWith('blob:'))URL.revokeObjectURL(profilePhoto);profilePhoto=URL.createObjectURL(blob);if(state.route==='profile')render();return true}
+  async function loadCustomAvatar(){if(!initData)return false;try{const r=await fetch(`${API}/profile/avatar/get`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({init_data:initData})});if(!r.ok)return false;return setPhotoBlob(await r.blob())}catch(e){console.warn('Custom avatar:',e);return false}}
+  async function loadTelegramPhoto(){if(!initData)return;try{const r=await fetch(`${API}/profile/photo`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({init_data:initData})});if(!r.ok)return;setPhotoBlob(await r.blob())}catch(e){console.warn('Profile photo:',e)}}
+  function imageToDataUrl(file){return new Promise((resolve,reject)=>{const img=new Image(),url=URL.createObjectURL(file);img.onload=()=>{try{const size=Math.min(img.naturalWidth,img.naturalHeight),sx=Math.max(0,(img.naturalWidth-size)/2),sy=Math.max(0,(img.naturalHeight-size)/2),canvas=document.createElement('canvas');canvas.width=512;canvas.height=512;canvas.getContext('2d').drawImage(img,sx,sy,size,size,0,0,512,512);URL.revokeObjectURL(url);resolve(canvas.toDataURL('image/jpeg',.86))}catch(e){URL.revokeObjectURL(url);reject(e)}};img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error('image'))};img.src=url})}
+  async function uploadAvatar(file){if(!file||!initData)return;try{await api('/profile/avatar',{init_data:initData,image:await imageToDataUrl(file)});await loadCustomAvatar();haptic()}catch(e){console.warn('Avatar upload:',e)}}
+  function localPayload(){return{init_data:initData,completed:state.completed,favorites:state.favorites,language:state.language,theme:state.theme,font_scale:state.fontScale}}
   async function push(){if(!initData||!ready)return;try{await api('/profile/save',localPayload())}catch(e){console.warn('Profile sync:',e)}}
   function schedulePush(){clearTimeout(timer);timer=setTimeout(push,250)}
-  const localSave=save;
-  save=function(){localSave();schedulePush()};
-
+  const localSave=save;save=function(){localSave();schedulePush()};
   const baseRenderProfile=renderProfile;
   renderProfile=function(){
     baseRenderProfile();
-    const user=profile||tgUser||{};
-    const name=[user.first_name,user.last_name].filter(Boolean).join(' ')||'Telegram';
-    const username=user.username?`@${user.username}`:'';
-    const hasPhoto=Boolean(profilePhoto||user.photo_url);
-    const photo=profilePhoto||user.photo_url||'';
-    const initials=(user.first_name||'ИА').slice(0,2);
-    const dark=state.theme==='dark';
-    const themeLabel=dark?t('enableLight'):t('enableDark');
-    const themeIcon=dark
-      ? '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>'
-      : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4a8.7 8.7 0 1 0 11.2 11.2Z" fill="currentColor"/></svg>';
-    const avatar=hasPhoto
-      ? `<img src="${escapeHtml(photo)}" alt="" class="profile-avatar-img">`
-      : `<span class="profile-avatar-fallback">${escapeHtml(initials)}</span>`;
-    view.innerHTML=`
-      <section class="profile-page-card">
-        <button type="button" class="profile-theme-btn" data-theme-profile aria-label="${escapeHtml(themeLabel)}" title="${escapeHtml(themeLabel)}"><span class="theme-symbol">${themeIcon}</span></button>
-        <button type="button" class="profile-avatar-button" data-avatar-picker aria-label="${escapeHtml(t('profile'))}">${avatar}<span class="profile-camera">📷</span></button>
-        <input data-avatar-input type="file" accept="image/jpeg,image/png,image/webp" hidden>
-        <div class="profile-identity">
-          <h2>${escapeHtml(name)}</h2>
-          ${username?`<p class="profile-username">${escapeHtml(username)}</p>`:''}
-          <p class="profile-student">${t('academyStudent')}</p>
-        </div>
-      </section>
-      <div class="profile-settings-title">${escapeHtml(t('changeDesign'))}</div>
-      <section class="profile-settings-card">
-        <div class="profile-setting-row">
-          <div class="profile-setting-label"><strong>Aa</strong><span>${escapeHtml(t('about'))}</span></div>
-          <div class="font-controls"><button class="secondary-btn font-btn" data-font="minus">A−</button><button class="secondary-btn font-value" data-font="reset">${Math.round(state.fontScale*100)}%</button><button class="secondary-btn font-btn" data-font="plus">A+</button></div>
-        </div>
-        <div class="profile-setting-row">
-          <div class="profile-setting-label"><strong>${escapeHtml(t('interfaceLanguage'))}</strong><span>${escapeHtml(t('now'))}: ${state.language==='ru'?escapeHtml(t('russian')):escapeHtml(t('chechen'))}</span></div>
-          <div class="language-switch"><button class="secondary-btn ${state.language==='ru'?'selected':''}" data-language="ru">${escapeHtml(t('russian'))}</button><button class="secondary-btn ${state.language==='ce'?'selected':''}" data-language="ce">${escapeHtml(t('chechen'))}</button></div>
-        </div>
-      </section>`;
-
-    const themeButton=view.querySelector('[data-theme-profile]');
-    themeButton?.addEventListener('click',()=>{
-      state.theme=state.theme==='dark'?'light':'dark';
-      document.documentElement.dataset.theme=state.theme;
-      save();
-      render();
-      haptic();
-    });
-    const picker=view.querySelector('[data-avatar-picker]');
-    const input=view.querySelector('[data-avatar-input]');
-    picker?.addEventListener('click',()=>input?.click());
-    input?.addEventListener('change',()=>uploadAvatar(input.files?.[0]));
+    const user=profile||tgUser||{},name=[user.first_name,user.last_name].filter(Boolean).join(' ')||'Telegram',username=user.username?`@${user.username}`:'',photo=profilePhoto||user.photo_url||'',initials=(user.first_name||'ИА').slice(0,2),dark=state.theme==='dark',themeLabel=dark?t('enableLight'):t('enableDark');
+    const themeIcon=dark?'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4a8.7 8.7 0 1 0 11.2 11.2Z" fill="currentColor"/></svg>';
+    const avatar=photo?`<img src="${escapeHtml(photo)}" alt="" class="profile-avatar-img">`:`<span class="profile-avatar-fallback">${escapeHtml(initials)}</span>`;
+    view.innerHTML=`<section class="profile-page-card"><button type="button" class="profile-theme-btn" data-theme-profile aria-label="${escapeHtml(themeLabel)}" title="${escapeHtml(themeLabel)}"><span class="theme-symbol">${themeIcon}</span></button><button type="button" class="profile-avatar-button" data-avatar-picker aria-label="${escapeHtml(t('profile'))}">${avatar}<span class="profile-camera">📷</span></button><input data-avatar-input type="file" accept="image/jpeg,image/png,image/webp" hidden><div class="profile-identity"><h2>${escapeHtml(name)}</h2>${username?`<p class="profile-username">${escapeHtml(username)}</p>`:''}<p class="profile-student">${t('academyStudent')}</p></div></section><div class="profile-settings-title">${escapeHtml(t('changeDesign'))}</div><section class="profile-settings-card"><div class="profile-setting-row"><div class="profile-setting-label"><strong>Aa</strong><span>${escapeHtml(t('about'))}</span></div><div class="font-controls"><button class="secondary-btn font-btn" data-font="minus">A−</button><button class="secondary-btn font-value" data-font="reset">${Math.round(state.fontScale*100)}%</button><button class="secondary-btn font-btn" data-font="plus">A+</button></div></div><div class="profile-setting-row"><div class="profile-setting-label"><strong>${escapeHtml(t('interfaceLanguage'))}</strong><span>${escapeHtml(t('now'))}: ${state.language==='ru'?escapeHtml(t('russian')):escapeHtml(t('chechen'))}</span></div><div class="language-switch"><button class="secondary-btn ${state.language==='ru'?'selected':''}" data-language="ru">${escapeHtml(t('russian'))}</button><button class="secondary-btn ${state.language==='ce'?'selected':''}" data-language="ce">${escapeHtml(t('chechen'))}</button></div></div></section>`;
+    const picker=view.querySelector('[data-avatar-picker]'),input=view.querySelector('[data-avatar-input]');picker?.addEventListener('click',()=>input?.click());input?.addEventListener('change',()=>uploadAvatar(input.files?.[0]));
   };
-
-  async function start(){
-    if(!initData)return;
-    try{
-      const data=await api('/profile/load',{init_data:initData});
-      profile=data.profile;
-      if(data.is_new){
-        state.theme='dark';state.fontScale=.9;state.completed=[];
-        document.documentElement.dataset.theme='dark';
-        localStorage.setItem(SEQUENTIAL_MIGRATION_KEY,'1');localSave();ready=true;await push();
-      }else{
-        state.completed=Array.isArray(profile.completed)?profile.completed:[];
-        state.favorites=Array.isArray(profile.favorites)?profile.favorites:[];
-        state.language=profile.language==='ru'?'ru':'ce';
-        state.theme=profile.theme==='light'?'light':'dark';
-        state.fontScale=Number(profile.font_scale)||.9;
-        document.documentElement.dataset.theme=state.theme;
-        const needsSequentialReset=!localStorage.getItem(SEQUENTIAL_MIGRATION_KEY);
-        if(needsSequentialReset){state.completed=[];localStorage.setItem(SEQUENTIAL_MIGRATION_KEY,'1')}
-        localSave();ready=true;if(needsSequentialReset)await push();
-      }
-      render();
-      const custom=await loadCustomAvatar();
-      if(!custom)await loadTelegramPhoto();
-    }catch(e){console.warn('Profile load:',e)}
-  }
+  async function start(){if(!initData)return;try{const data=await api('/profile/load',{init_data:initData});profile=data.profile;if(data.is_new){state.theme='dark';state.fontScale=.9;state.completed=[];document.documentElement.dataset.theme='dark';localStorage.setItem(SEQUENTIAL_MIGRATION_KEY,'1');localSave();ready=true;await push()}else{state.completed=Array.isArray(profile.completed)?profile.completed:[];state.favorites=Array.isArray(profile.favorites)?profile.favorites:[];state.language=profile.language==='ru'?'ru':'ce';state.theme=profile.theme==='light'?'light':'dark';state.fontScale=Number(profile.font_scale)||.9;document.documentElement.dataset.theme=state.theme;const reset=!localStorage.getItem(SEQUENTIAL_MIGRATION_KEY);if(reset){state.completed=[];localStorage.setItem(SEQUENTIAL_MIGRATION_KEY,'1')}localSave();ready=true;if(reset)await push()}render();if(!(await loadCustomAvatar()))await loadTelegramPhoto()}catch(e){console.warn('Profile load:',e)}}
   start();
 })();
