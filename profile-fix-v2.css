@@ -1,60 +1,34 @@
 /* Profile final structural fix — loaded after every existing visual layer. */
 .view:has(.profile-row){position:relative!important}
 
-/* Theme control belongs to the profile card itself. */
 .view:has(.profile-row) .profile-row .profile-theme-btn{
   position:absolute!important;
   top:50%!important;
   right:12px!important;
   transform:translateY(-50%)!important;
-  width:42px!important;
-  height:42px!important;
-  min-width:42px!important;
-  min-height:42px!important;
-  padding:0!important;
-  margin:0!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  border:0!important;
-  border-radius:50%!important;
-  background:rgba(255,255,255,.035)!important;
-  color:var(--gold)!important;
-  box-shadow:none!important;
-  opacity:1!important;
-  visibility:visible!important;
-  cursor:pointer!important;
-  z-index:50!important;
-  -webkit-tap-highlight-color:transparent!important;
+  width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;
+  padding:0!important;margin:0!important;display:flex!important;align-items:center!important;justify-content:center!important;
+  border:0!important;border-radius:50%!important;background:rgba(255,255,255,.035)!important;
+  color:var(--gold)!important;box-shadow:none!important;opacity:1!important;visibility:visible!important;
+  cursor:pointer!important;z-index:50!important;-webkit-tap-highlight-color:transparent!important;
 }
 .view:has(.profile-row) .profile-row .profile-theme-btn::before{
-  content:'☼'!important;
-  display:block!important;
-  width:30px!important;
-  height:30px!important;
-  line-height:30px!important;
-  text-align:center!important;
-  font-family:"Segoe UI Symbol","Noto Sans Symbols 2",sans-serif!important;
-  font-size:28px!important;
-  font-weight:400!important;
-  color:var(--gold)!important;
-  opacity:1!important;
-  visibility:visible!important;
+  content:'☼'!important;display:block!important;width:30px!important;height:30px!important;line-height:30px!important;
+  text-align:center!important;font-family:"Segoe UI Symbol","Noto Sans Symbols 2",sans-serif!important;
+  font-size:28px!important;font-weight:400!important;color:var(--gold)!important;opacity:1!important;visibility:visible!important;
 }
-.view:has(.profile-row) .profile-row .profile-theme-btn .theme-symbol{
-  display:none!important;
-}
+:root:not([data-theme="dark"]) .view:has(.profile-row) .profile-row .profile-theme-btn::before{content:'☾'!important}
+.view:has(.profile-row) .profile-row .profile-theme-btn .theme-symbol{display:none!important}
 .view:has(.profile-row) .profile-row .profile-theme-btn:active{transform:translateY(-50%) scale(.92)!important}
 .view:has(.profile-row) .profile-row .profile-theme-btn:focus-visible{outline:2px solid var(--gold)!important;outline-offset:2px!important}
 
-/* The old theme setting row is removed completely. */
+/* Remove the old theme setting row completely. */
 .view:has(.profile-row) .settings-list .setting-row:first-child{display:none!important}
 .view:has(.profile-row) .settings-list::before,
 .view:has(.profile-row) .settings-list::after{content:none!important;display:none!important}
 .view:has(.profile-row) .settings-list .setting-row:nth-child(2){border-top:0!important}
 .view:has(.profile-row) .settings-list .setting-row:nth-child(3){border-top:1px solid var(--line)!important}
 
-/* Keep profile text clear of the theme button. */
 .view:has(.profile-row) .profile-row{padding-right:64px!important}
 
 @media(max-width:430px){
