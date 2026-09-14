@@ -1,12 +1,18 @@
-/* FINAL PROFILE FIX */
+/* FINAL PROFILE FIX — stable profile layout */
 .view:has(.profile-row){position:relative!important}
 
-/* Theme button: top-right corner of the profile card. */
+/* The profile card itself is the positioning anchor. */
+.view:has(.profile-row) .profile-row{
+  position:relative!important;
+  padding-right:52px!important;
+}
+
+/* One theme control, fixed to the card's own top-right corner. */
 .view:has(.profile-row) .profile-row .profile-theme-btn{
   position:absolute!important;
   top:8px!important;
   right:8px!important;
-  z-index:999!important;
+  z-index:10000!important;
   width:36px!important;
   height:36px!important;
   min-width:36px!important;
@@ -17,6 +23,7 @@
   align-items:center!important;
   justify-content:center!important;
   border:0!important;
+  border-radius:50%!important;
   background:transparent!important;
   box-shadow:none!important;
   color:var(--gold)!important;
@@ -26,38 +33,63 @@
   cursor:pointer!important;
   -webkit-tap-highlight-color:transparent!important;
 }
+
 .view:has(.profile-row) .profile-row .profile-theme-btn .theme-symbol{
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
-  width:26px!important;
-  height:26px!important;
+  width:28px!important;
+  height:28px!important;
   color:var(--gold)!important;
+  fill:currentColor!important;
   opacity:1!important;
   visibility:visible!important;
 }
+
 .view:has(.profile-row) .profile-row .profile-theme-btn .theme-symbol svg{
   display:block!important;
   width:24px!important;
   height:24px!important;
-  flex:0 0 24px!important;
+  min-width:24px!important;
+  min-height:24px!important;
   color:currentColor!important;
+  fill:currentColor!important;
+  stroke:currentColor!important;
 }
-.view:has(.profile-row) .profile-row .profile-theme-btn::before{content:none!important;display:none!important}
+
+.view:has(.profile-row) .profile-row .profile-theme-btn::before,
+.view:has(.profile-row) .profile-row .profile-theme-btn::after{
+  content:none!important;
+  display:none!important;
+}
+
 .view:has(.profile-row) .profile-row .profile-theme-btn:active{transform:scale(.9)!important}
 
-/* Remove the old theme row only; keep the two real settings rows clean. */
+/* Remove the obsolete theme row from settings. Keep exactly one separator. */
 .view:has(.profile-row) .settings-list .setting-row:first-child{display:none!important}
 .view:has(.profile-row) .settings-list::before,
 .view:has(.profile-row) .settings-list::after{content:none!important;display:none!important}
 .view:has(.profile-row) .settings-list .setting-row{border-top:0!important}
 .view:has(.profile-row) .settings-list .setting-row + .setting-row{border-top:1px solid var(--line)!important}
 
-.view:has(.profile-row) .profile-row{padding-right:52px!important}
-
 @media(max-width:430px){
-  .view:has(.profile-row) .profile-row .profile-theme-btn{top:7px!important;right:7px!important;width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important}
-  .view:has(.profile-row) .profile-row .profile-theme-btn .theme-symbol{width:24px!important;height:24px!important}
-  .view:has(.profile-row) .profile-row .profile-theme-btn .theme-symbol svg{width:22px!important;height:22px!important;flex-basis:22px!important}
   .view:has(.profile-row) .profile-row{padding-right:48px!important}
+  .view:has(.profile-row) .profile-row .profile-theme-btn{
+    top:7px!important;
+    right:7px!important;
+    width:34px!important;
+    height:34px!important;
+    min-width:34px!important;
+    min-height:34px!important;
+  }
+  .view:has(.profile-row) .profile-row .profile-theme-btn .theme-symbol{
+    width:26px!important;
+    height:26px!important;
+  }
+  .view:has(.profile-row) .profile-row .profile-theme-btn .theme-symbol svg{
+    width:22px!important;
+    height:22px!important;
+    min-width:22px!important;
+    min-height:22px!important;
+  }
 }
