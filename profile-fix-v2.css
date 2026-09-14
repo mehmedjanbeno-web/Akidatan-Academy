@@ -1,10 +1,11 @@
-/* Profile theme button — final visible placement */
+/* FINAL PROFILE FIX */
 .view:has(.profile-row){position:relative!important}
 
+/* Theme button: top-right corner of the profile card. */
 .view:has(.profile-row) .profile-row .profile-theme-btn{
   position:absolute!important;
-  top:10px!important;
-  right:10px!important;
+  top:8px!important;
+  right:8px!important;
   z-index:999!important;
   width:36px!important;
   height:36px!important;
@@ -16,51 +17,39 @@
   align-items:center!important;
   justify-content:center!important;
   border:0!important;
-  border-radius:50%!important;
   background:transparent!important;
-  color:var(--gold)!important;
   box-shadow:none!important;
+  color:var(--gold)!important;
   opacity:1!important;
   visibility:visible!important;
   overflow:visible!important;
   cursor:pointer!important;
-  -webkit-tap-highlight-color:transparent!important;
 }
-
-/* Draw a guaranteed-visible moon/sun without relying on a symbol font. */
-.view:has(.profile-row) .profile-row .profile-theme-btn::before{
-  content:'☾'!important;
+.view:has(.profile-row) .profile-row .profile-theme-btn .theme-symbol{
   display:block!important;
-  width:30px!important;
-  height:30px!important;
-  line-height:30px!important;
-  text-align:center!important;
-  font-family:Arial,sans-serif!important;
-  font-size:27px!important;
-  font-weight:400!important;
+  width:auto!important;
+  height:auto!important;
+  font-family:"Segoe UI Symbol","Noto Sans Symbols 2",Arial,sans-serif!important;
+  font-size:28px!important;
+  line-height:1!important;
   color:var(--gold)!important;
   opacity:1!important;
   visibility:visible!important;
 }
-
-:root[data-theme="dark"] .view:has(.profile-row) .profile-row .profile-theme-btn::before{
-  content:'☼'!important;
-  font-size:27px!important;
-}
-
-.view:has(.profile-row) .profile-row .profile-theme-btn .theme-symbol{display:none!important}
+.view:has(.profile-row) .profile-row .profile-theme-btn::before{content:none!important;display:none!important}
 .view:has(.profile-row) .profile-row .profile-theme-btn:active{transform:scale(.9)!important}
 
-/* Remove only the old duplicate theme setting row. */
+/* Remove the old theme row only; keep the two real settings rows clean. */
 .view:has(.profile-row) .settings-list .setting-row:first-child{display:none!important}
 .view:has(.profile-row) .settings-list::before,
 .view:has(.profile-row) .settings-list::after{content:none!important;display:none!important}
+.view:has(.profile-row) .settings-list .setting-row{border-top:0!important}
+.view:has(.profile-row) .settings-list .setting-row + .setting-row{border-top:1px solid var(--line)!important}
 
-/* Keep profile content clear of the top-right button. */
-.view:has(.profile-row) .profile-row{position:relative!important;padding-right:52px!important}
+.view:has(.profile-row) .profile-row{padding-right:52px!important}
 
 @media(max-width:430px){
-  .view:has(.profile-row) .profile-row .profile-theme-btn{top:8px!important;right:7px!important;width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important}
-  .view:has(.profile-row) .profile-row .profile-theme-btn::before{width:28px!important;height:28px!important;line-height:28px!important;font-size:25px!important}
+  .view:has(.profile-row) .profile-row .profile-theme-btn{top:7px!important;right:7px!important;width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important}
+  .view:has(.profile-row) .profile-row .profile-theme-btn .theme-symbol{font-size:25px!important}
   .view:has(.profile-row) .profile-row{padding-right:48px!important}
 }
