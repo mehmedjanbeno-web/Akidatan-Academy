@@ -12,155 +12,42 @@
   justify-content:space-between!important;
   align-content:stretch!important;
 }
-
-/* Back control */
 .view:has(.profile-row) > .link-btn[data-back]{
-  flex:0 0 48px!important;
-  min-height:48px!important;
-  height:48px!important;
-  width:max-content!important;
-  padding:7px 15px!important;
-  border-radius:15px!important;
-  font-size:calc(17px * var(--font-scale))!important;
+  flex:0 0 48px!important;min-height:48px!important;height:48px!important;width:max-content!important;
+  padding:7px 15px!important;border-radius:15px!important;font-size:calc(17px * var(--font-scale))!important;
 }
-
-/* Profile identity */
 .view:has(.profile-row) .profile-row{
-  position:relative!important;
-  min-height:0!important;
-  height:104px!important;
-  flex:0 0 104px!important;
-  box-sizing:border-box;
-  padding:10px 64px 10px 14px!important;
-  border-radius:20px!important;
-  gap:13px!important;
-  display:flex!important;
-  align-items:center!important;
-  overflow:hidden!important;
+  position:relative!important;min-height:0!important;height:104px!important;flex:0 0 104px!important;
+  box-sizing:border-box;padding:10px 64px 10px 14px!important;border-radius:20px!important;gap:13px!important;
+  display:flex!important;align-items:center!important;overflow:hidden!important;
 }
-.view:has(.profile-row) .profile-row .avatar{
-  width:74px!important;
-  height:74px!important;
-  flex:0 0 74px!important;
-  font-size:calc(20px * var(--font-scale))!important;
-}
-.view:has(.profile-row) .profile-row > div:last-child{
-  min-width:0!important;
-  display:flex!important;
-  flex-direction:column!important;
-  justify-content:center!important;
-}
-.view:has(.profile-row) .profile-row h2,
-.view:has(.profile-row) .profile-row h3{
-  font-size:calc(20px * var(--font-scale))!important;
-  line-height:1.08!important;
-  margin:0!important;
-  white-space:nowrap!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
-}
-.view:has(.profile-row) .profile-row p{
-  font-size:calc(13px * var(--font-scale))!important;
-  line-height:1.18!important;
-  margin:4px 0 0!important;
-  white-space:nowrap!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
-}
+.view:has(.profile-row) .profile-row .avatar{width:74px!important;height:74px!important;flex:0 0 74px!important;font-size:calc(20px * var(--font-scale))!important}
+.view:has(.profile-row) .profile-row > div:last-child{min-width:0!important;display:flex!important;flex-direction:column!important;justify-content:center!important}
+.view:has(.profile-row) .profile-row h2,.view:has(.profile-row) .profile-row h3{font-size:calc(20px * var(--font-scale))!important;line-height:1.08!important;margin:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.view:has(.profile-row) .profile-row p{font-size:calc(13px * var(--font-scale))!important;line-height:1.18!important;margin:4px 0 0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
 
-/* Theme: keep the original button, but make it a clean single glyph. */
+/* Theme control: original clickable control, visually placed at the profile card's upper-right. */
 .view:has(.profile-row) .settings-list .setting-row:first-child{
-  position:absolute!important;
-  top:0!important;
-  right:0!important;
-  width:46px!important;
-  height:46px!important;
-  min-height:46px!important;
-  padding:0!important;
-  margin:0!important;
-  border:0!important;
-  z-index:20!important;
-  background:transparent!important;
+  position:absolute!important;top:112px!important;right:10px!important;width:46px!important;height:46px!important;min-height:46px!important;
+  padding:0!important;margin:0!important;border:0!important;z-index:20!important;background:transparent!important;
 }
 .view:has(.profile-row) .settings-list .setting-row:first-child > div:first-child{display:none!important}
-.view:has(.profile-row) .settings-list .setting-row:first-child .icon-btn{
-  width:46px!important;
-  height:46px!important;
-  min-width:46px!important;
-  min-height:46px!important;
-  padding:0!important;
-  margin:0!important;
-  border-radius:14px!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-}
-.view:has(.profile-row) .theme-symbol{
-  font-size:0!important;
-  line-height:1!important;
-  display:block!important;
-}
-.view:has(.profile-row) .theme-symbol:before{
-  content:'☀'!important;
-  font-size:25px!important;
-  line-height:1!important;
-}
+.view:has(.profile-row) .settings-list .setting-row:first-child .icon-btn{width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;padding:0!important;margin:0!important;border-radius:14px!important;display:flex!important;align-items:center!important;justify-content:center!important}
+.view:has(.profile-row) .theme-symbol{font-size:0!important;line-height:1!important;display:block!important}
+.view:has(.profile-row) .theme-symbol:before{content:'☀'!important;font-size:25px!important;line-height:1!important}
 :root[data-theme='light'] .view:has(.profile-row) .theme-symbol:before{content:'☾'!important}
 
-/* Put the theme button at the top-right of the profile card area. */
-.view:has(.profile-row) .settings-list .setting-row:first-child{transform:translateY(-1px)}
-
-/* Progress */
-.view:has(.profile-row) .progress-card{
-  min-height:0!important;
-  height:150px!important;
-  flex:0 0 150px!important;
-  box-sizing:border-box;
-  padding:13px 14px!important;
-  border-radius:20px!important;
-  gap:7px!important;
-  overflow:hidden!important;
-}
+.view:has(.profile-row) .progress-card{min-height:0!important;height:150px!important;flex:0 0 150px!important;box-sizing:border-box;padding:13px 14px!important;border-radius:20px!important;gap:7px!important;overflow:hidden!important}
 .view:has(.profile-row) .progress-card .progress-row span{font-size:calc(17px * var(--font-scale))!important}
 .view:has(.profile-row) .progress-card .progress-row strong{font-size:calc(24px * var(--font-scale))!important}
 .view:has(.profile-row) .progress-track{height:8px!important;margin:5px 0!important}
 .view:has(.profile-row) .progress-card .quick-sub{font-size:calc(13px * var(--font-scale))!important;line-height:1.15!important}
 
-/* Settings heading */
-.view:has(.profile-row) .section-head{
-  min-height:30px!important;
-  height:30px!important;
-  flex:0 0 30px!important;
-  margin:0!important;
-  padding:0 1px!important;
-  align-items:center!important;
-}
-.view:has(.profile-row) .section-head h2{
-  font-size:calc(17px * var(--font-scale))!important;
-  line-height:1.05!important;
-  margin:0!important;
-}
+.view:has(.profile-row) .section-head{min-height:30px!important;height:30px!important;flex:0 0 30px!important;margin:0!important;padding:0 1px!important;align-items:center!important}
+.view:has(.profile-row) .section-head h2{font-size:calc(17px * var(--font-scale))!important;line-height:1.05!important;margin:0!important}
 
-/* Settings card: font size + language only; theme is in the profile header. */
-.view:has(.profile-row) .settings-list{
-  position:relative!important;
-  min-height:0!important;
-  height:190px!important;
-  flex:0 0 190px!important;
-  box-sizing:border-box;
-  padding:6px 12px 6px!important;
-  border-radius:20px!important;
-  gap:0!important;
-  overflow:hidden!important;
-}
-.view:has(.profile-row) .settings-list .setting-row{
-  min-height:0!important;
-  height:89px!important;
-  box-sizing:border-box;
-  padding:7px 2px!important;
-  gap:8px!important;
-  align-items:center!important;
-}
+.view:has(.profile-row) .settings-list{position:relative!important;min-height:0!important;height:190px!important;flex:0 0 190px!important;box-sizing:border-box;padding:6px 12px 6px!important;border-radius:20px!important;gap:0!important;overflow:hidden!important}
+.view:has(.profile-row) .settings-list .setting-row{min-height:0!important;height:89px!important;box-sizing:border-box;padding:7px 2px!important;gap:8px!important;align-items:center!important}
 .view:has(.profile-row) .settings-list .setting-row + .setting-row{border-top:1px solid var(--line)!important}
 .view:has(.profile-row) .settings-list .setting-row strong{font-size:calc(15px * var(--font-scale))!important;line-height:1.1!important}
 .view:has(.profile-row) .settings-list .setting-row .quick-sub{font-size:calc(11px * var(--font-scale))!important;line-height:1.1!important;margin-top:2px!important}
@@ -181,7 +68,7 @@
   .view:has(.profile-row) .section-head{height:27px!important;flex-basis:27px!important;min-height:27px!important}
   .view:has(.profile-row) .settings-list{height:174px!important;flex-basis:174px!important;padding:5px 10px 5px!important;border-radius:18px!important}
   .view:has(.profile-row) .settings-list .setting-row{height:82px!important}
-  .view:has(.profile-row) .settings-list .setting-row:first-child{top:0!important;right:0!important}
+  .view:has(.profile-row) .settings-list .setting-row:first-child{top:108px!important;right:0!important}
   .view:has(.profile-row) .font-controls .secondary-btn{min-height:37px!important;height:37px!important;padding:5px 7px!important}
   .view:has(.profile-row) .font-value{min-width:62px!important}
   .view:has(.profile-row) .language-switch .secondary-btn{min-height:37px!important;height:37px!important;padding:5px 6px!important}
