@@ -1,0 +1,108 @@
+/* Style 2 + color B. Overrides older dark layers. Copy untouched. */
+:root,
+:root[data-theme="light"]{
+  --bg:#e7f0e8 !important;
+  --surface:#f7fbf7 !important;
+  --surface-2:#dce8de !important;
+  --text:#0d3f33 !important;
+  --muted:#4d6a61 !important;
+  --primary:#0d3f33 !important;
+  --primary-2:#165b49 !important;
+  --gold:#c9a24a !important;
+  --line:rgba(13,63,51,.14) !important;
+  --shadow:0 8px 22px rgba(13,63,51,.08) !important;
+}
+
+html,body,.app-shell{
+  background:#e7f0e8 !important;
+  color:#0d3f33 !important;
+}
+
+.view{
+  background:transparent !important;
+}
+
+.card,
+.course-card,
+.lesson-card,
+.quick-card,
+.settings-list,
+.empty-state,
+.progress-card,
+.search-wrap input{
+  background:#f7fbf7 !important;
+  color:#0d3f33 !important;
+  border:1px solid rgba(13,63,51,.12) !important;
+  box-shadow:0 8px 22px rgba(13,63,51,.07) !important;
+}
+
+.hero,
+.hero.academy-home-brand{
+  background:linear-gradient(160deg,#f7fbf7 0%, #dce8de 100%) !important;
+  color:#0d3f33 !important;
+  border:1px solid rgba(13,63,51,.12) !important;
+}
+.hero h2,
+.hero.academy-home-brand h2{color:#0d3f33 !important}
+.hero p,
+.hero-kicker{color:#4d6a61 !important}
+
+.primary-btn{
+  background:#c9a24a !important;
+  color:#14352c !important;
+}
+
+.lesson-header{
+  background:linear-gradient(160deg,#f7fbf7,#dce8de) !important;
+  color:#0d3f33 !important;
+  border:1px solid rgba(13,63,51,.12) !important;
+}
+
+.link-btn[data-back]{
+  background:#f7fbf7 !important;
+  border:1px solid rgba(13,63,51,.16) !important;
+  color:#0d3f33 !important;
+}
+
+.bottom-nav{
+  background:#f7fbf7 !important;
+  border-top:1px solid rgba(13,63,51,.12) !important;
+}
+.nav-item{color:#4d6a61 !important}
+.nav-item.active{
+  background:#dce8de !important;
+  color:#0d3f33 !important;
+}
+.nav-item.active .nav-icon{color:#c9a24a !important}
+
+.side-menu{
+  background:linear-gradient(180deg,#f7fbf7,#e7f0e8) !important;
+  border-left:1px solid rgba(13,63,51,.12) !important;
+}
+.side-menu-item{
+  background:#f7fbf7 !important;
+  border:1px solid rgba(13,63,51,.1) !important;
+  color:#0d3f33 !important;
+}
+.side-menu-icon{color:#c9a24a !important}
+.side-menu-footer{color:#4d6a61 !important}
+
+.side-menu-trigger,
+.academy-home-menu{
+  background:#f7fbf7 !important;
+  color:#0d3f33 !important;
+  border:1px solid rgba(13,63,51,.14) !important;
+}
+
+.brand-logo,
+.academy-home-logo{
+  border:2px solid rgba(201,162,74,.55) !important;
+  background:#fff !important;
+}
+
+:root[data-theme="dark"] html,
+:root[data-theme="dark"] body,
+:root[data-theme="dark"] .app-shell{
+  background:#0b1714 !important;
+  color:#f7f0df !important;
+}
