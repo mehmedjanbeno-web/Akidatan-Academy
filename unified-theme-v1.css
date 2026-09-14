@@ -1,0 +1,34 @@
+/* Akidatan Academy — unified dark theme layer. Visual CSS only; app logic untouched. */
+:root[data-theme="dark"]{
+  --bg:#071813;--surface:#0b2b23;--surface-2:#123a30;--text:#f7f1df;--muted:#a7b7b1;
+  --primary:#d8bf7b;--primary-2:#f0d89a;--gold:#d9ba6a;--line:rgba(222,194,121,.22);--shadow:0 12px 30px rgba(0,0,0,.18)
+}
+html,body,.app-shell{background:var(--bg)!important;color:var(--text)!important}
+body{color-scheme:dark}
+.card,.course-card,.lesson-card,.settings-list,.profile-card,.progress-card{background:var(--surface)!important;color:var(--text)!important;border-color:var(--line)!important;box-shadow:none!important}
+.course-card p,.lesson-card p,.quick-sub,.profile-card p,.audio-sub,.empty-state p{color:var(--muted)!important}
+.search-wrap input{background:var(--surface)!important;color:var(--text)!important;border-color:var(--line)!important}
+.search-wrap input::placeholder{color:var(--muted)!important;opacity:1}
+.secondary-btn,.speed-btn{background:var(--surface-2)!important;color:var(--text)!important;border-color:var(--line)!important}
+.badge{background:var(--surface-2)!important;color:#ead9a7!important;border-color:var(--line)!important}
+.progress-track{background:var(--surface-2)!important}
+.progress-fill{background:linear-gradient(90deg,#bfa45e,#efd58f)!important}
+.file-row{background:var(--surface-2)!important;color:var(--text)!important}
+.bottom-nav{background:rgba(6,34,28,.97)!important;border-top-color:var(--line)!important}
+.nav-item{color:#aab8b3!important}.nav-item.active{background:#0f4a3a!important;color:#f1d58d!important}
+.side-menu{background:linear-gradient(180deg,#0b332a 0%,#071b17 100%)!important;color:var(--text)!important;border-left-color:var(--line)!important}
+.side-menu-item{background:#10372d!important;color:var(--text)!important;border-color:rgba(255,255,255,.07)!important}
+.side-menu-about{background:rgba(255,255,255,.045)!important;color:#d5ddd9!important;border-color:var(--line)!important}
+.lesson-header{background:linear-gradient(145deg,#0e4f3e,#0a3b30)!important;color:#f7f1df!important;border-color:var(--line)!important}
+.lesson-note-panel{background:var(--surface)!important;color:var(--text)!important;border-color:var(--line)!important}
+.lesson-note-text{background:#06362b!important;color:var(--text)!important;border-color:var(--line)!important}
+.toggle{background:var(--surface-2)!important}.toggle.on{background:var(--primary-2)!important}
+.link-btn{color:var(--primary-2)!important}
+.favorite-btn{color:var(--gold)!important}
+/* Back/search controls: one dark appearance everywhere. */
+.link-btn[data-back]{background:var(--surface-2)!important;border-color:var(--gold)!important;color:var(--text)!important;box-shadow:0 6px 18px rgba(0,0,0,.22)!important}
+.search-wrap>span{color:var(--primary-2)!important}
+/* Prevent old light-theme fallbacks from leaking into the active dark UI. */
+:root[data-theme="dark"] .age-label,
+:root[data-theme="dark"] [data-age-label]{color:#123d32}
+@media(max-width:430px){.view{background:var(--bg)!important}}
