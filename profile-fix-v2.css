@@ -1,38 +1,37 @@
 /* Profile final structural fix — loaded after every existing visual layer. */
-.view:has(.profile-row){position:relative!important}
+.view:has(.profile-row) .profile-row{position:relative!important;padding-right:64px!important}
 
+/* ONLY ONE theme control: top-right corner of the profile card. */
 .view:has(.profile-row) .profile-row .profile-theme-btn{
   position:absolute!important;
-  top:50%!important;
-  right:12px!important;
-  transform:translateY(-50%)!important;
-  width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;
+  top:0!important;
+  right:0!important;
+  transform:none!important;
+  width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important;
   padding:0!important;margin:0!important;display:flex!important;align-items:center!important;justify-content:center!important;
-  border:0!important;border-radius:50%!important;background:rgba(255,255,255,.035)!important;
+  border:0!important;border-radius:50%!important;background:transparent!important;
   color:var(--gold)!important;box-shadow:none!important;opacity:1!important;visibility:visible!important;
   cursor:pointer!important;z-index:50!important;-webkit-tap-highlight-color:transparent!important;
 }
 .view:has(.profile-row) .profile-row .profile-theme-btn::before{
   content:'☼'!important;display:block!important;width:30px!important;height:30px!important;line-height:30px!important;
   text-align:center!important;font-family:"Segoe UI Symbol","Noto Sans Symbols 2",sans-serif!important;
-  font-size:28px!important;font-weight:400!important;color:var(--gold)!important;opacity:1!important;visibility:visible!important;
+  font-size:27px!important;font-weight:400!important;color:var(--gold)!important;opacity:1!important;visibility:visible!important;
 }
 :root:not([data-theme="dark"]) .view:has(.profile-row) .profile-row .profile-theme-btn::before{content:'☾'!important}
 .view:has(.profile-row) .profile-row .profile-theme-btn .theme-symbol{display:none!important}
-.view:has(.profile-row) .profile-row .profile-theme-btn:active{transform:translateY(-50%) scale(.92)!important}
+.view:has(.profile-row) .profile-row .profile-theme-btn:active{transform:scale(.92)!important}
 .view:has(.profile-row) .profile-row .profile-theme-btn:focus-visible{outline:2px solid var(--gold)!important;outline-offset:2px!important}
 
-/* Remove the old theme setting row completely. */
+/* Remove the old theme setting row completely — theme exists only in the card corner. */
 .view:has(.profile-row) .settings-list .setting-row:first-child{display:none!important}
 .view:has(.profile-row) .settings-list::before,
 .view:has(.profile-row) .settings-list::after{content:none!important;display:none!important}
 .view:has(.profile-row) .settings-list .setting-row:nth-child(2){border-top:0!important}
 .view:has(.profile-row) .settings-list .setting-row:nth-child(3){border-top:1px solid var(--line)!important}
 
-.view:has(.profile-row) .profile-row{padding-right:64px!important}
-
 @media(max-width:430px){
-  .view:has(.profile-row) .profile-row{padding-right:56px!important}
-  .view:has(.profile-row) .profile-row .profile-theme-btn{right:8px!important;width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important}
+  .view:has(.profile-row) .profile-row{padding-right:50px!important}
+  .view:has(.profile-row) .profile-row .profile-theme-btn{right:0!important;width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important}
   .view:has(.profile-row) .profile-row .profile-theme-btn::before{width:27px!important;height:27px!important;line-height:27px!important;font-size:25px!important}
 }
