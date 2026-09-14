@@ -99,7 +99,10 @@
     const initials=(user.first_name||'ӀА').slice(0,2);
     const avatarInner=hasPhoto?`<img src="${escapeHtml(photo)}" alt="" style="width:72px;height:72px;border-radius:50%;object-fit:cover;display:block">`:`<div class="avatar" style="margin:0">${escapeHtml(initials)}</div>`;
     const cameraBadge=hasPhoto?'':`<span aria-hidden="true" style="position:absolute;right:-3px;bottom:-3px;width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--gold);color:#17382f;font-size:14px;border:2px solid var(--surface)">📷</span>`;
-    card.innerHTML=`<button type="button" data-avatar-picker style="position:relative;width:72px;height:72px;flex:0 0 72px;padding:0;border:0;background:transparent;border-radius:50%;overflow:visible;cursor:pointer">${avatarInner}${cameraBadge}</button><input data-avatar-input type="file" accept="image/jpeg,image/png,image/webp" hidden><div><h3 style="margin:0">${escapeHtml(name)}</h3>${username?`<p style="margin:5px 0 0;color:var(--muted)">${escapeHtml(username)}</p>`:''}<p style="margin:5px 0 0;color:var(--muted)">${t('academyStudent')}</p></div>`;
+    const dark=state.theme==='dark';
+    const themeLabel=dark?t('enableLight'):t('enableDark');
+    const themeIcon=dark?'☼':'☾';
+    card.innerHTML=`<button type="button" class="profile-theme-btn" data-theme-profile aria-label="${escapeHtml(themeLabel)}" title="${escapeHtml(themeLabel)}"><span class="theme-symbol" aria-hidden="true">${themeIcon}</span></button><button type="button" data-avatar-picker style="position:relative;width:72px;height:72px;flex:0 0 72px;padding:0;border:0;background:transparent;border-radius:50%;overflow:visible;cursor:pointer">${avatarInner}${cameraBadge}</button><input data-avatar-input type="file" accept="image/jpeg,image/png,image/webp" hidden><div><h3 style="margin:0">${escapeHtml(name)}</h3>${username?`<p style="margin:5px 0 0;color:var(--muted)">${escapeHtml(username)}</p>`:''}<p style="margin:5px 0 0;color:var(--muted)">${t('academyStudent')}</p></div>`;
     const picker=card.querySelector('[data-avatar-picker]');
     const input=card.querySelector('[data-avatar-input]');
     picker?.addEventListener('click',()=>input?.click());
