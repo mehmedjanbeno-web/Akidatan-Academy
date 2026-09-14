@@ -101,8 +101,18 @@
     const cameraBadge=hasPhoto?'':`<span aria-hidden="true" style="position:absolute;right:-3px;bottom:-3px;width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--gold);color:#17382f;font-size:14px;border:2px solid var(--surface)">📷</span>`;
     const dark=state.theme==='dark';
     const themeLabel=dark?t('enableLight'):t('enableDark');
-    const themeIcon=dark?'☼':'☾';
+    const themeIcon=dark
+      ? `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2.5v2M12 19.5v2M4.58 4.58l1.42 1.42M18 18l1.42 1.42M2.5 12h2M19.5 12h2M4.58 19.42L6 18M18 6l1.42-1.42" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`
+      : `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.4A8.5 8.5 0 0 1 8.6 4a8.7 8.7 0 1 0 11.4 11.4Z" fill="currentColor"/></svg>`;
     card.innerHTML=`<button type="button" class="profile-theme-btn" data-theme-profile aria-label="${escapeHtml(themeLabel)}" title="${escapeHtml(themeLabel)}"><span class="theme-symbol" aria-hidden="true">${themeIcon}</span></button><button type="button" data-avatar-picker style="position:relative;width:72px;height:72px;flex:0 0 72px;padding:0;border:0;background:transparent;border-radius:50%;overflow:visible;cursor:pointer">${avatarInner}${cameraBadge}</button><input data-avatar-input type="file" accept="image/jpeg,image/png,image/webp" hidden><div><h3 style="margin:0">${escapeHtml(name)}</h3>${username?`<p style="margin:5px 0 0;color:var(--muted)">${escapeHtml(username)}</p>`:''}<p style="margin:5px 0 0;color:var(--muted)">${t('academyStudent')}</p></div>`;
+    const themeButton=card.querySelector('[data-theme-profile]');
+    themeButton?.addEventListener('click',()=>{
+      state.theme=state.theme==='dark'?'light':'dark';
+      document.documentElement.dataset.theme=state.theme;
+      save();
+      render();
+      haptic();
+    });
     const picker=card.querySelector('[data-avatar-picker]');
     const input=card.querySelector('[data-avatar-input]');
     picker?.addEventListener('click',()=>input?.click());
