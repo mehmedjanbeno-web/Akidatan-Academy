@@ -6,13 +6,12 @@
 .view:has(.profile-row) .profile-row > div:last-child{min-width:0!important;display:flex!important;flex-direction:column!important;justify-content:center!important;flex:1 1 auto!important}
 .view:has(.profile-row) .profile-row h2,.view:has(.profile-row) .profile-row h3{font-size:calc(20px * var(--font-scale))!important;line-height:1.08!important;margin:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
 .view:has(.profile-row) .profile-row p{font-size:calc(13px * var(--font-scale))!important;line-height:1.18!important;margin:4px 0 0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
-/* Theme control sits in the upper-right corner of the profile card. */
-.view:has(.profile-row) .settings-list .setting-row:first-child{position:absolute!important;top:29px!important;right:22px!important;width:42px!important;height:42px!important;min-height:42px!important;padding:0!important;margin:0!important;border:0!important;z-index:20!important;background:transparent!important}
+/* Theme control: one clean icon inside the profile card, upper-right. */
+.view:has(.profile-row) .settings-list .setting-row:first-child{position:absolute!important;top:122px!important;right:22px!important;width:42px!important;height:42px!important;min-height:42px!important;padding:0!important;margin:0!important;border:0!important;z-index:20!important;background:transparent!important}
 .view:has(.profile-row) .settings-list .setting-row:first-child > div:first-child{display:none!important}
-.view:has(.profile-row) .settings-list .setting-row:first-child .icon-btn{width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;padding:0!important;margin:0!important;border-radius:13px!important;display:flex!important;align-items:center!important;justify-content:center!important}
-.view:has(.profile-row) .theme-symbol{font-size:0!important;line-height:1!important;display:block!important}
-.view:has(.profile-row) .theme-symbol:before{content:'☀'!important;font-size:24px!important;line-height:1!important}
-:root[data-theme='light'] .view:has(.profile-row) .theme-symbol:before{content:'☾'!important}
+.view:has(.profile-row) .settings-list .setting-row:first-child .icon-btn{width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;padding:0!important;margin:0!important;border:0!important;border-radius:50%!important;display:flex!important;align-items:center!important;justify-content:center!important;background:transparent!important;box-shadow:none!important}
+.view:has(.profile-row) .theme-symbol{font-size:24px!important;line-height:1!important;display:block!important}
+.view:has(.profile-row) .theme-symbol:before{content:none!important;display:none!important}
 .view:has(.profile-row) .progress-card{min-height:0!important;height:150px!important;flex:0 0 150px!important;box-sizing:border-box;padding:13px 14px!important;border-radius:20px!important;gap:7px!important;overflow:hidden!important}
 .view:has(.profile-row) .progress-card .progress-row span{font-size:calc(17px * var(--font-scale))!important}
 .view:has(.profile-row) .progress-card .progress-row strong{font-size:calc(24px * var(--font-scale))!important}
@@ -21,7 +20,9 @@
 .view:has(.profile-row) .section-head{min-height:30px!important;height:30px!important;flex:0 0 30px!important;margin:0!important;padding:0 1px!important;align-items:center!important}
 .view:has(.profile-row) .section-head h2{font-size:calc(17px * var(--font-scale))!important;line-height:1.05!important;margin:0!important}
 .view:has(.profile-row) .settings-list{position:static!important;min-height:0!important;height:190px!important;flex:0 0 190px!important;box-sizing:border-box;padding:6px 12px 6px!important;border-radius:20px!important;gap:0!important;overflow:hidden!important}
-.view:has(.profile-row) .settings-list .setting-row{min-height:0!important;height:89px!important;box-sizing:border-box;padding:7px 2px!important;gap:8px!important;align-items:center!important}
+/* Remove the accidental second horizontal line at the top of the settings card. */
+.view:has(.profile-row) .settings-list::before,.view:has(.profile-row) .settings-list::after{content:none!important;display:none!important}
+.view:has(.profile-row) .settings-list .setting-row{min-height:0!important;height:89px!important;box-sizing:border-box;padding:7px 2px!important;gap:8px!important;align-items:center!important;border-top:0!important}
 .view:has(.profile-row) .settings-list .setting-row + .setting-row{border-top:1px solid var(--line)!important}
 .view:has(.profile-row) .settings-list .setting-row strong{font-size:calc(15px * var(--font-scale))!important;line-height:1.1!important}
 .view:has(.profile-row) .settings-list .setting-row .quick-sub{font-size:calc(11px * var(--font-scale))!important;line-height:1.1!important;margin-top:2px!important}
@@ -37,9 +38,9 @@
 .view:has(.profile-row) .profile-row .avatar{width:64px!important;height:64px!important;flex-basis:64px!important}
 .view:has(.profile-row) .profile-row h2,.view:has(.profile-row) .profile-row h3{font-size:calc(18px * var(--font-scale))!important}
 .view:has(.profile-row) .profile-row p{font-size:calc(12px * var(--font-scale))!important}
-.view:has(.profile-row) .settings-list .setting-row:first-child{top:25px!important;right:18px!important;width:38px!important;height:38px!important;min-height:38px!important}
-.view:has(.profile-row) .settings-list .setting-row:first-child .icon-btn{width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;border-radius:12px!important}
-.view:has(.profile-row) .theme-symbol:before{font-size:22px!important}
+.view:has(.profile-row) .settings-list .setting-row:first-child{top:110px!important;right:18px!important;width:38px!important;height:38px!important;min-height:38px!important}
+.view:has(.profile-row) .settings-list .setting-row:first-child .icon-btn{width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;border-radius:50%!important}
+.view:has(.profile-row) .theme-symbol{font-size:22px!important}
 .view:has(.profile-row) .progress-card{height:132px!important;flex-basis:132px!important;padding:11px 12px!important;border-radius:18px!important}
 .view:has(.profile-row) .section-head{height:27px!important;flex-basis:27px!important;min-height:27px!important}
 .view:has(.profile-row) .settings-list{height:174px!important;flex-basis:174px!important;padding:5px 10px 5px!important;border-radius:18px!important}
