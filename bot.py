@@ -24,7 +24,7 @@ def api(method, data=None):
 def send_welcome(chat_id):
     keyboard = {
         "inline_keyboard": [[
-            {"text": "📚 Академи схьаелла", "web_app": {"url": MINI_APP_URL}}
+            {"text": "Открыть", "web_app": {"url": MINI_APP_URL}}
         ]]
     }
     api("sendMessage", {
