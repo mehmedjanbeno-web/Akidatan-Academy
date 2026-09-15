@@ -34,6 +34,13 @@ def send_welcome(chat_id):
     })
 
 
+def send_question_prompt(chat_id):
+    api("sendMessage", {
+        "chat_id": chat_id,
+        "text": "📝 Напишите ваш вопрос здесь — мы постараемся помочь.",
+    })
+
+
 def main():
     offset = 0
     print("Akidatan Academy bot started")
@@ -45,8 +52,15 @@ def main():
                 message = update.get("message") or {}
                 text = message.get("text", "")
                 chat = message.get("chat") or {}
-                if text.split("@")[0] == "/start" and chat.get("id"):
-                    send_welcome(chat["id"])
+                parts = text.split()
+                command = parts[0].split("@")[0] if parts else ""
+                start_param = parts[1] if len(parts) > 1 else ""
+
+                if command == "/start" and chat.get("id"):
+                    if start_param == "question":
+                        send_question_prompt(chat["id"])
+                    else:
+                        send_welcome(chat["id"])
         except Exception as exc:
             print("Bot error:", exc)
 
