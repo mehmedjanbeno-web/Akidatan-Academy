@@ -83,6 +83,36 @@ body{color-scheme:light}
 :root[data-theme="light"] .side-menu-copy small{color:#b8c7c1!important}
 :root[data-theme="light"] .side-menu-footer{color:#9aa9a3!important}
 
+/* Light theme cards stay green, so their text/icons use strong white for readability. */
+:root[data-theme="light"] .card,
+:root[data-theme="light"] .quick-card,
+:root[data-theme="light"] .course-card,
+:root[data-theme="light"] .lesson-card,
+:root[data-theme="light"] .profile-card,
+:root[data-theme="light"] .progress-card,
+:root[data-theme="light"] .settings-list,
+:root[data-theme="light"] .file-row,
+:root[data-theme="light"] .lesson-note-panel{
+  color:#fff!important;
+}
+:root[data-theme="light"] .card h1,
+:root[data-theme="light"] .card h2,
+:root[data-theme="light"] .card h3,
+:root[data-theme="light"] .card h4,
+:root[data-theme="light"] .card p,
+:root[data-theme="light"] .card span,
+:root[data-theme="light"] .card strong,
+:root[data-theme="light"] .quick-card * ,
+:root[data-theme="light"] .course-card * ,
+:root[data-theme="light"] .lesson-card * ,
+:root[data-theme="light"] .profile-card * ,
+:root[data-theme="light"] .progress-card * ,
+:root[data-theme="light"] .settings-list * ,
+:root[data-theme="light"] .file-row * ,
+:root[data-theme="light"] .lesson-note-panel *{
+  color:#fff!important;
+}
+
 .view:has(.academy-home-brand){min-height:calc(100dvh - 4px)!important;height:calc(100dvh - 4px)!important;padding-bottom:82px!important;grid-template-rows:auto auto minmax(0,1fr) auto minmax(0,1fr)!important;align-content:stretch!important}
 .view:has(.academy-home-brand)>.hero.academy-home-brand{min-height:0!important;height:auto!important}
 .view:has(.academy-home-brand)>.section-head{min-height:24px!important;align-self:center!important}
