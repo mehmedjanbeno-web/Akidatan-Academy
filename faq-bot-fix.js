@@ -1,7 +1,10 @@
 (()=>{
   const BOT_URL='https://t.me/AkidatanAcademyAppBot?start=question';
+  let handled=false;
 
   function openBot(){
+    if(handled)return;
+    handled=true;
     const tg=window.Telegram?.WebApp;
     try{
       if(tg?.openTelegramLink){
@@ -9,9 +12,7 @@
         return;
       }
     }catch(_){}
-    try{
-      window.location.href=BOT_URL;
-    }catch(_){}
+    try{ window.location.assign(BOT_URL); }catch(_){}
   }
 
   document.addEventListener('click',(e)=>{
@@ -22,11 +23,10 @@
     e.stopPropagation();
     e.stopImmediatePropagation();
 
-    const backdrop=document.querySelector('.side-menu-backdrop');
-    backdrop?.classList.remove('open');
+    document.querySelector('.side-menu-backdrop')?.classList.remove('open');
     document.body.classList.remove('side-menu-open');
     document.getElementById('side-menu-toggle')?.setAttribute('aria-expanded','false');
 
-    setTimeout(openBot,0);
+    openBot();
   },true);
 })();
