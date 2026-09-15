@@ -4,7 +4,7 @@ import urllib.parse
 import urllib.request
 
 TOKEN = os.environ["BOT_TOKEN"]
-MINI_APP_URL = "https://mehmedjanbeno-web.github.io/Akidatan-Academy/?v=20260913-1318"
+MINI_APP_URL = "https://mehmedjanbeno-web.github.io/Akidatan-Academy/?v=20260915-final"
 
 WELCOME_TEXT = """🕌 Ассаламу Ӏалайкум ва рахьматуллахӀи ва баракатухӀ!
 
