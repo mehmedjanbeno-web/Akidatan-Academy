@@ -34,6 +34,13 @@ def send_welcome(chat_id):
     })
 
 
+def send_contact_prompt(chat_id):
+    api("sendMessage", {
+        "chat_id": chat_id,
+        "text": "✉️ Связь с администратором\n\nНапишите ваше сообщение следующим сообщением. Администратор получит его в этом боте.",
+    })
+
+
 def main():
     offset = 0
     print("Akidatan Academy bot started")
@@ -49,7 +56,11 @@ def main():
                 command = parts[0].split("@")[0] if parts else ""
 
                 if command == "/start" and chat.get("id"):
-                    send_welcome(chat["id"])
+                    start_param = parts[1] if len(parts) > 1 else ""
+                    if start_param == "contact_admin":
+                        send_contact_prompt(chat["id"])
+                    else:
+                        send_welcome(chat["id"])
         except Exception as exc:
             print("Bot error:", exc)
 
