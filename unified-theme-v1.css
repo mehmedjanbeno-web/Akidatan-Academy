@@ -34,66 +34,30 @@ body{color-scheme:light}
 .search-wrap>span{color:var(--primary-2)!important}
 :root[data-theme="dark"] .age-label,:root[data-theme="dark"] [data-age-label]{color:#123d32}
 
-/* Light theme: explicit high-contrast text. Dark theme is intentionally untouched. */
-:root[data-theme="light"] body,
-:root[data-theme="light"] .app-shell,
-:root[data-theme="light"] .view,
-:root[data-theme="light"] h1,
-:root[data-theme="light"] h2,
-:root[data-theme="light"] h3,
-:root[data-theme="light"] h4,
-:root[data-theme="light"] p,
-:root[data-theme="light"] label,
-:root[data-theme="light"] strong,
-:root[data-theme="light"] span,
-:root[data-theme="light"] small,
-:root[data-theme="light"] .quick-title,
-:root[data-theme="light"] .quick-sub,
-:root[data-theme="light"] .section-head,
-:root[data-theme="light"] .progress-row,
-:root[data-theme="light"] .file-row,
-:root[data-theme="light"] .lesson-note-panel,
-:root[data-theme="light"] .profile-card,
-:root[data-theme="light"] .settings-list,
-:root[data-theme="light"] .course-card,
-:root[data-theme="light"] .lesson-card,
-:root[data-theme="light"] .card{color:#000!important}
-:root[data-theme="light"] input,
-:root[data-theme="light"] textarea,
-:root[data-theme="light"] select,
-:root[data-theme="light"] input::placeholder,
-:root[data-theme="light"] textarea::placeholder{color:#000!important;opacity:1!important;-webkit-text-fill-color:#000!important}
-:root[data-theme="light"] .nav-item{color:#000!important}
-:root[data-theme="light"] .nav-item.active{color:#000!important}
-:root[data-theme="light"] .link-btn,
-:root[data-theme="light"] .favorite-btn,
-:root[data-theme="light"] .secondary-btn,
-:root[data-theme="light"] .speed-btn{color:#000!important}
-:root[data-theme="light"] .badge{color:#000!important}
-:root[data-theme="light"] .hero{color:#fff!important}
-:root[data-theme="light"] .hero-kicker{color:#eadcb7!important}
-:root[data-theme="light"] .hero p{color:rgba(255,255,255,.82)!important}
-:root[data-theme="light"] .primary-btn{background:#f4e4b8!important;color:#000!important}
-:root[data-theme="light"] .lesson-header{color:#fff!important}
-:root[data-theme="light"] .play-btn{color:#fff!important}
-:root[data-theme="light"] .side-menu{color:#f7f1df!important}
-:root[data-theme="light"] .side-menu *{color:inherit}
-:root[data-theme="light"] .side-menu-section-title{color:#9fb0aa!important}
-:root[data-theme="light"] .side-menu-item{color:#f7f1df!important}
-:root[data-theme="light"] .side-menu-copy small{color:#b8c7c1!important}
-:root[data-theme="light"] .side-menu-footer{color:#9aa9a3!important}
-
-/* Light theme cards stay green, so their text/icons use strong white for readability. */
+/* Light theme: all text on green/dark cards is bright white. */
+:root[data-theme="light"] .hero,
+:root[data-theme="light"] .hero h2,
+:root[data-theme="light"] .hero p,
+:root[data-theme="light"] .hero span,
+:root[data-theme="light"] .hero strong,
+:root[data-theme="light"] .hero small,
+:root[data-theme="light"] .lesson-header,
+:root[data-theme="light"] .lesson-header h2,
+:root[data-theme="light"] .lesson-header p,
+:root[data-theme="light"] .lesson-header span,
+:root[data-theme="light"] .lesson-header strong,
+:root[data-theme="light"] .lesson-header small,
+:root[data-theme="light"] .lesson-note-text,
+:root[data-theme="light"] .lesson-note-text *{
+  color:#fff!important;-webkit-text-fill-color:#fff!important
+}
 :root[data-theme="light"] .card,
-:root[data-theme="light"] .quick-card,
 :root[data-theme="light"] .course-card,
 :root[data-theme="light"] .lesson-card,
-:root[data-theme="light"] .profile-card,
-:root[data-theme="light"] .progress-card,
 :root[data-theme="light"] .settings-list,
-:root[data-theme="light"] .file-row,
-:root[data-theme="light"] .lesson-note-panel{
-  color:#fff!important;
+:root[data-theme="light"] .profile-card,
+:root[data-theme="light"] .progress-card{
+  color:#fff!important;-webkit-text-fill-color:#fff!important
 }
 :root[data-theme="light"] .card h1,
 :root[data-theme="light"] .card h2,
@@ -102,16 +66,47 @@ body{color-scheme:light}
 :root[data-theme="light"] .card p,
 :root[data-theme="light"] .card span,
 :root[data-theme="light"] .card strong,
-:root[data-theme="light"] .quick-card * ,
-:root[data-theme="light"] .course-card * ,
-:root[data-theme="light"] .lesson-card * ,
-:root[data-theme="light"] .profile-card * ,
-:root[data-theme="light"] .progress-card * ,
-:root[data-theme="light"] .settings-list * ,
-:root[data-theme="light"] .file-row * ,
-:root[data-theme="light"] .lesson-note-panel *{
-  color:#fff!important;
+:root[data-theme="light"] .card small,
+:root[data-theme="light"] .course-card h3,
+:root[data-theme="light"] .course-card p,
+:root[data-theme="light"] .lesson-card h3,
+:root[data-theme="light"] .lesson-card p,
+:root[data-theme="light"] .profile-card h2,
+:root[data-theme="light"] .profile-card p,
+:root[data-theme="light"] .progress-card h2,
+:root[data-theme="light"] .progress-card p,
+:root[data-theme="light"] .progress-card span,
+:root[data-theme="light"] .progress-card strong,
+:root[data-theme="light"] .settings-list h2,
+:root[data-theme="light"] .settings-list p,
+:root[data-theme="light"] .settings-list span,
+:root[data-theme="light"] .settings-list strong{
+  color:#fff!important;-webkit-text-fill-color:#fff!important
 }
+
+/* Keep light background-only text black where it is not on a green card. */
+:root[data-theme="light"] body,
+:root[data-theme="light"] .app-shell,
+:root[data-theme="light"] .view,
+:root[data-theme="light"] .section-head,
+:root[data-theme="light"] .section-head h2,
+:root[data-theme="light"] .topbar,
+:root[data-theme="light"] input,
+:root[data-theme="light"] textarea,
+:root[data-theme="light"] select{
+  color:#000!important;-webkit-text-fill-color:#000!important
+}
+:root[data-theme="light"] input::placeholder,
+:root[data-theme="light"] textarea::placeholder{color:#000!important;opacity:1}
+:root[data-theme="light"] .nav-item{color:#000!important}.nav-item.active{color:#000!important}
+:root[data-theme="light"] .link-btn{color:#000!important}
+:root[data-theme="light"] .primary-btn{background:#f4e4b8!important;color:#000!important}
+:root[data-theme="light"] .side-menu{color:#f7f1df!important}
+:root[data-theme="light"] .side-menu *{color:inherit}
+:root[data-theme="light"] .side-menu-section-title{color:#9fb0aa!important}
+:root[data-theme="light"] .side-menu-item{color:#f7f1df!important}
+:root[data-theme="light"] .side-menu-copy small{color:#b8c7c1!important}
+:root[data-theme="light"] .side-menu-footer{color:#9aa9a3!important}
 
 .view:has(.academy-home-brand){min-height:calc(100dvh - 4px)!important;height:calc(100dvh - 4px)!important;padding-bottom:82px!important;grid-template-rows:auto auto minmax(0,1fr) auto minmax(0,1fr)!important;align-content:stretch!important}
 .view:has(.academy-home-brand)>.hero.academy-home-brand{min-height:0!important;height:auto!important}
