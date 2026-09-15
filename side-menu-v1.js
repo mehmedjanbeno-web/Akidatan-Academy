@@ -1,69 +1,11 @@
 (()=>{
-  const svg={
-    profile:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>',
-    teacher:'<svg viewBox="0 0 24 24"><path d="m3 9 9-5 9 5-9 5z"/><path d="M6 11.2V16c2.8 2.2 9.2 2.2 12 0v-4.8M21 9v6"/></svg>',
-    admin:'<svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg>',
-    share:'<svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.5-4.4M8.2 13.2l7.5 4.4"/></svg>',
-    favorite:'<svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.4 5.4 0 0 0-7.6 0L12 5.8l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.8a5.4 5.4 0 0 0 0-7.6z"/></svg>',
-    theme:'<svg viewBox="0 0 24 24"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/><circle cx="12" cy="12" r="4"/></svg>',
-    language:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>',
-    info:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>'
-  };
-
-  const trigger=document.getElementById('side-menu-toggle');
-  if(!trigger)return;
-
-  const backdrop=document.createElement('div');
-  backdrop.className='side-menu-backdrop';
-  backdrop.innerHTML=`<aside class="side-menu" role="dialog" aria-modal="true" aria-label="Меню Академии">
-    <button class="side-menu-close" type="button" data-side-close aria-label="Закрыть">×</button>
-    <div class="side-menu-list">
-      ${item('profile',svg.profile,'Мой профиль')}
-      ${item('teacher',svg.teacher,'Связь с учителем')}
-      ${item('admin',svg.admin,'Связь с администратором')}
-      ${item('share',svg.share,'Поделиться приложением')}
-      ${item('favorites',svg.favorite,'Избранное')}
-      ${item('appearance',svg.theme,'Настройки оформления')}
-      ${item('language',svg.language,'Язык интерфейса')}
-      ${item('about',svg.info,'О приложении')}
-    </div>
-    <div class="side-menu-about" data-side-about>
-      <strong>Ӏакъидатан Академия</strong><br>
-      Учебное пространство для последовательного прохождения аудиоуроков, сохранения заметок и отслеживания прогресса.
-    </div>
-    <div class="side-menu-footer">Ӏакъидатан Академия<br>Учебное пространство</div>
-  </aside>`;
-  document.body.appendChild(backdrop);
-
-  function item(action,icon,label){return `<button class="side-menu-item" type="button" data-side-action="${action}"><span class="side-menu-icon">${icon}</span><span>${label}</span><span class="side-menu-arrow">›</span></button>`}
-  function open(){backdrop.classList.add('open');document.body.classList.add('side-menu-open');trigger.setAttribute('aria-expanded','true');haptic?.()}
-  function close(){backdrop.classList.remove('open');document.body.classList.remove('side-menu-open');trigger.setAttribute('aria-expanded','false')}
-  function go(route){close();navigate(route)}
-  function contactUnavailable(label){try{window.Telegram?.WebApp?.showAlert?.(`${label}: контакт будет добавлен позже.`)}catch(_){toast?.('Контакт будет добавлен позже')}}
-  async function shareApp(){
-    const url='https://t.me/AkidatanAcademyAppBot';
-    const text='Ӏакъидатан Академия';
-    close();
-    try{if(navigator.share){await navigator.share({title:text,text,url});return}}catch(_){}
-    try{window.Telegram?.WebApp?.openTelegramLink?.(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`)}catch(_){location.href=`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`}
-  }
-
-  trigger.addEventListener('click',open);
-  backdrop.addEventListener('click',e=>{
-    if(e.target===backdrop||e.target.closest('[data-side-close]')){close();return}
-    const action=e.target.closest('[data-side-action]')?.dataset.sideAction;
-    if(!action)return;
-    if(action==='profile'){go('profile');return}
-    if(action==='teacher'){contactUnavailable('Связь с учителем');return}
-    if(action==='admin'){contactUnavailable('Связь с администратором');return}
-    if(action==='share'){shareApp();return}
-    if(action==='favorites'){go('favorites');return}
-    if(action==='appearance'||action==='language'){go('profile');return}
-    if(action==='about'){
-      const box=backdrop.querySelector('[data-side-about]');
-      box?.classList.toggle('open');
-      return;
-    }
-  });
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&backdrop.classList.contains('open'))close()});
+const svg={home:'<svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9.5V21h14V9.5M9 21v-7h6v7"/></svg>',courses:'<svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5zM4 5.5v16M8 7h8M8 11h8"/></svg>',profile:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>',bot:'<svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="13" rx="3"/><path d="M12 7V4M9 12h.01M15 12h.01M8 16h8"/><circle cx="12" cy="3.5" r="1"/></svg>',channel:'<svg viewBox="0 0 24 24"><path d="m21 4-3 17-6-5-3 3-1-6-5-2zM8 13l8-6"/></svg>',faq:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.6 2.6 0 1 1 4.5 1.8c-1.2 1.1-2 1.5-2 3M12 17h.01"/></svg>',share:'<svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.5-4.4M8.2 13.2l7.5 4.4"/></svg>',favorite:'<svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.4 5.4 0 0 0-7.6 0L12 5.8l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.8a5.4 5.4 0 0 0 0-7.6z"/></svg>',theme:'<svg viewBox="0 0 24 24"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/><circle cx="12" cy="12" r="4"/></svg>',language:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>',info:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>'};
+const CHANNEL_URL='https://t.me/Akidatan_Akademi_1',BOT_URL='https://t.me/AkidatanAcademyAppBot',trigger=document.getElementById('side-menu-toggle');if(!trigger)return;
+const backdrop=document.createElement('div');backdrop.className='side-menu-backdrop';
+backdrop.innerHTML=`<aside class="side-menu" role="dialog" aria-modal="true" aria-label="Меню Академии"><button class="side-menu-close" type="button" data-side-close aria-label="Закрыть">×</button><div class="side-menu-brand"><div class="side-menu-brand-mark">ӀА</div><div><strong>Ӏакъидатан Академия</strong><span>Учебное пространство</span></div></div><div class="side-menu-section-title">Обучение</div><div class="side-menu-list">${item('home',svg.home,'Главная')}${item('courses',svg.courses,'Курсы')}${item('favorites',svg.favorite,'Избранное')}</div><div class="side-menu-section-title">Академия</div><div class="side-menu-list">${item('channel',svg.channel,'Канал Академии','Новости, уроки и материалы')}${item('faq',svg.faq,'Вопросы и ответы','Частые вопросы об обучении')}${item('bot',svg.bot,'Помощь и вопросы','Написать через Telegram-бота')}${item('share',svg.share,'Поделиться приложением')}</div><div class="side-menu-faq" data-side-faq aria-hidden="true"><button type="button" class="side-menu-faq-close" data-faq-close aria-label="Закрыть">×</button><div class="side-menu-faq-title">Вопросы и ответы</div><div class="side-menu-faq-list">${faq('Как начать обучение?','Откройте «Курсы», выберите курс и начните с первого урока.')}${faq('Как сохранить урок?','Откройте урок и добавьте его в «Избранное».')}${faq('Как отметить урок пройденным?','Внутри урока используйте кнопку отметки о прохождении.')}${faq('Как изменить язык и размер текста?','Откройте «Мой профиль» — там находятся настройки языка и оформления.')}${faq('Где выходят новые материалы?','Новые материалы и объявления публикуются в официальном Telegram-канале Академии.')}</div><button type="button" class="side-menu-faq-bot" data-side-action="bot">🤖 Не нашли ответ? Задать вопрос боту</button></div><div class="side-menu-section-title">Приложение</div><div class="side-menu-list">${item('profile',svg.profile,'Мой профиль')}${item('appearance',svg.theme,'Оформление')}${item('language',svg.language,'Язык интерфейса')}${item('about',svg.info,'Об Академии')}</div><div class="side-menu-about" data-side-about aria-hidden="true"><strong>Ӏакъидатан Академия</strong><p>Учебное пространство для последовательного изучения уроков, сохранения избранного и отслеживания прогресса.</p><p>Официальные новости и новые материалы публикуются в Telegram-канале Академии.</p></div><div class="side-menu-footer">Официальный канал и поддержка доступны через Telegram</div></aside>`;
+document.body.appendChild(backdrop);
+function item(a,i,l,s=''){return `<button class="side-menu-item" type="button" data-side-action="${a}"><span class="side-menu-icon">${i}</span><span class="side-menu-copy"><b>${l}</b>${s?`<small>${s}</small>`:''}</span><span class="side-menu-arrow">›</span></button>`}function faq(q,a){return `<details class="side-menu-faq-item"><summary>${q}<span>+</span></summary><p>${a}</p></details>`}
+function open(){backdrop.classList.add('open');document.body.classList.add('side-menu-open');trigger.setAttribute('aria-expanded','true');haptic?.()}function hideFaq(){const x=backdrop.querySelector('[data-side-faq]');x?.classList.remove('open');x?.setAttribute('aria-hidden','true')}function close(){backdrop.classList.remove('open');document.body.classList.remove('side-menu-open');trigger.setAttribute('aria-expanded','false');hideFaq()}function go(r){close();navigate(r)}function telegram(u){close();try{if(window.Telegram?.WebApp?.openTelegramLink){window.Telegram.WebApp.openTelegramLink(u);return}}catch(_){}window.open(u,'_blank','noopener,noreferrer')}
+async function shareApp(){const text='Ӏакъидатан Академия — учебное приложение';close();try{if(navigator.share){await navigator.share({title:'Ӏакъидатан Академия',text,url:BOT_URL});return}}catch(_){}telegram(`https://t.me/share/url?url=${encodeURIComponent(BOT_URL)}&text=${encodeURIComponent(text)}`)}
+trigger.addEventListener('click',open);backdrop.addEventListener('click',e=>{if(e.target===backdrop||e.target.closest('[data-side-close]')){close();return}if(e.target.closest('[data-faq-close]')){hideFaq();return}const a=e.target.closest('[data-side-action]')?.dataset.sideAction;if(!a)return;if(a==='home')return go('home');if(a==='courses')return go('courses');if(a==='profile')return go('profile');if(a==='favorites')return go('favorites');if(a==='appearance'||a==='language')return go('profile');if(a==='channel')return telegram(CHANNEL_URL);if(a==='bot')return telegram(BOT_URL);if(a==='share')return shareApp();if(a==='faq'){const x=backdrop.querySelector('[data-side-faq]');x?.classList.add('open');x?.setAttribute('aria-hidden','false');return}if(a==='about'){const x=backdrop.querySelector('[data-side-about]');const on=x?.classList.toggle('open');x?.setAttribute('aria-hidden',String(!on));return}});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&backdrop.classList.contains('open'))close()});
 })();
