@@ -34,17 +34,6 @@ def send_welcome(chat_id):
     })
 
 
-def send_question_prompt(chat_id, language):
-    if language == "ce":
-        text = "Ассаламу lалайкум варахьматуллахl 🤝\nХьай кху чохь кхолла делла хаттар хьа де ? Вай кху чохь жоп: лур ду гергар-чу хенахь!"
-    else:
-        text = "Ассаламу алейкум варахматуллах 🤝\nЗадайте здесь свой вопрос. Мы постараемся ответить в ближайшее время!"
-    api("sendMessage", {
-        "chat_id": chat_id,
-        "text": text,
-    })
-
-
 def main():
     offset = 0
     print("Akidatan Academy bot started")
@@ -58,15 +47,9 @@ def main():
                 chat = message.get("chat") or {}
                 parts = text.split()
                 command = parts[0].split("@")[0] if parts else ""
-                start_param = parts[1] if len(parts) > 1 else ""
 
                 if command == "/start" and chat.get("id"):
-                    if start_param in ("question", "question_ru"):
-                        send_question_prompt(chat["id"], "ru")
-                    elif start_param == "question_ce":
-                        send_question_prompt(chat["id"], "ce")
-                    else:
-                        send_welcome(chat["id"])
+                    send_welcome(chat["id"])
         except Exception as exc:
             print("Bot error:", exc)
 
