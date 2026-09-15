@@ -1,0 +1,99 @@
+/* Final readability layer. Dark theme intentionally untouched. */
+
+/* Light theme: use the color of the actual surface, not one global text color. */
+:root[data-theme="light"] .card,
+:root[data-theme="light"] .course-card,
+:root[data-theme="light"] .lesson-card,
+:root[data-theme="light"] .settings-list,
+:root[data-theme="light"] .profile-card,
+:root[data-theme="light"] .lesson-note-panel{
+  color:#000!important;
+  -webkit-text-fill-color:#000!important;
+}
+:root[data-theme="light"] .card h1,
+:root[data-theme="light"] .card h2,
+:root[data-theme="light"] .card h3,
+:root[data-theme="light"] .card h4,
+:root[data-theme="light"] .card p,
+:root[data-theme="light"] .card span,
+:root[data-theme="light"] .card strong,
+:root[data-theme="light"] .card small,
+:root[data-theme="light"] .course-card h3,
+:root[data-theme="light"] .course-card p,
+:root[data-theme="light"] .lesson-card h3,
+:root[data-theme="light"] .lesson-card p,
+:root[data-theme="light"] .profile-card h2,
+:root[data-theme="light"] .profile-card p,
+:root[data-theme="light"] .settings-list h2,
+:root[data-theme="light"] .settings-list p,
+:root[data-theme="light"] .settings-list span,
+:root[data-theme="light"] .settings-list strong{
+  color:#000!important;
+  -webkit-text-fill-color:#000!important;
+}
+
+/* The dashboard quick cards and progress card are deliberately dark green in both themes. */
+:root[data-theme="light"] .hero.academy-home-brand,
+:root[data-theme="light"] .hero.academy-home-brand *,
+:root[data-theme="light"] .hero.academy-home-brand + .section-head + .grid-2 .quick-card,
+:root[data-theme="light"] .hero.academy-home-brand + .section-head + .grid-2 .quick-card *,
+:root[data-theme="light"] .hero.academy-home-brand + .section-head + .grid-2 + .section-head + .progress-card,
+:root[data-theme="light"] .hero.academy-home-brand + .section-head + .grid-2 + .section-head + .progress-card *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+:root[data-theme="light"] .hero.academy-home-brand .primary-btn{
+  color:#000!important;
+  -webkit-text-fill-color:#000!important;
+}
+
+/* Lesson header and notebook editor are dark green: white text. */
+:root[data-theme="light"] .lesson-header,
+:root[data-theme="light"] .lesson-header *,
+:root[data-theme="light"] .lesson-note-text,
+:root[data-theme="light"] .lesson-note-text *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Secondary controls and light surfaces stay black. */
+:root[data-theme="light"] .secondary-btn,
+:root[data-theme="light"] .speed-btn,
+:root[data-theme="light"] .file-row,
+:root[data-theme="light"] .badge,
+:root[data-theme="light"] .toggle,
+:root[data-theme="light"] .link-btn[data-back]{
+  color:#000!important;
+  -webkit-text-fill-color:#000!important;
+}
+:root[data-theme="light"] .search-wrap input,
+:root[data-theme="light"] .search-wrap input::placeholder,
+:root[data-theme="light"] textarea,
+:root[data-theme="light"] textarea::placeholder,
+:root[data-theme="light"] select{
+  color:#000!important;
+  -webkit-text-fill-color:#000!important;
+  opacity:1!important;
+}
+
+/* Dark side menu is dark in both themes. */
+:root[data-theme="light"] .side-menu,
+:root[data-theme="light"] .side-menu *{
+  color:#f7f1df!important;
+  -webkit-text-fill-color:#f7f1df!important;
+}
+:root[data-theme="light"] .side-menu-section-title{color:#9fb0aa!important;-webkit-text-fill-color:#9fb0aa!important}
+:root[data-theme="light"] .side-menu-copy small{color:#b8c7c1!important;-webkit-text-fill-color:#b8c7c1!important}
+:root[data-theme="light"] .side-menu-footer{color:#9aa9a3!important;-webkit-text-fill-color:#9aa9a3!important}
+
+/* Bottom navigation is dark: white/gold remains readable. */
+:root[data-theme="light"] .bottom-nav{background:#06221c!important}
+:root[data-theme="light"] .bottom-nav .nav-item{color:#dce8e3!important;-webkit-text-fill-color:#dce8e3!important}
+:root[data-theme="light"] .bottom-nav .nav-item.active{color:#f1d58d!important;-webkit-text-fill-color:#f1d58d!important}
+
+/* Keep ordinary light-page headings and empty states black. */
+:root[data-theme="light"] .section-head,
+:root[data-theme="light"] .section-head h2,
+:root[data-theme="light"] .empty-state,
+:root[data-theme="light"] .empty-state h2,
+:root[data-theme="light"] .empty-state p{color:#000!important;-webkit-text-fill-color:#000!important}
