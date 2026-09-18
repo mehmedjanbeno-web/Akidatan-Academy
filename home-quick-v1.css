@@ -84,3 +84,17 @@
  .hero.academy-home-brand + .section-head + .grid-2 .quick-card:nth-child(-n+4) .quick-icon{width:54px!important;height:54px!important;font-size:27px!important}
  .hero.academy-home-brand + .section-head + .grid-2 + .section-head + .progress-card{padding:12px 14px!important}
 }
+
+/* 2026-09-19 v3: fit dashboard safely inside mobile viewport */
+.view:has(.academy-home-brand){display:grid!important;grid-template-rows:auto auto auto auto auto!important;align-content:start!important;gap:0!important;overflow:visible!important}
+.hero.academy-home-brand + .section-head + .grid-2{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;grid-auto-rows:118px!important;gap:10px!important;margin:0!important}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-card:nth-child(-n+4){position:relative!important;top:auto!important;bottom:auto!important;transform:none!important;min-height:0!important;height:118px!important;padding:12px 14px!important;border-radius:22px!important;gap:7px!important;overflow:hidden!important;align-self:auto!important}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-card:nth-child(-n+4) .quick-icon{width:48px!important;height:48px!important;border-radius:14px!important;font-size:24px!important;flex:0 0 48px!important}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-card:nth-child(-n+4) .quick-title{font-size:calc(17px * var(--font-scale))!important;line-height:1.05!important}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-card:nth-child(-n+4) .quick-sub{font-size:calc(11px * var(--font-scale))!important;line-height:1.08!important;margin-top:2px!important}
+.hero.academy-home-brand + .section-head + .grid-2 + .section-head{margin:10px 2px 6px!important;position:relative!important;z-index:2!important}
+.hero.academy-home-brand + .section-head + .grid-2 + .section-head + .progress-card{height:108px!important;min-height:108px!important;padding:12px 14px!important;border-radius:20px!important;overflow:hidden!important;margin:0 0 8px!important}
+.hero.academy-home-brand + .section-head + .grid-2 + .section-head + .progress-card .progress-row{margin:0 0 5px!important}
+.hero.academy-home-brand + .section-head + .grid-2 + .section-head + .progress-card .progress-track{margin:4px 0 5px!important;height:8px!important}
+.hero.academy-home-brand + .section-head + .grid-2 + .section-head + .progress-card .quick-sub{margin:0!important}
+@media(max-width:430px){.hero.academy-home-brand + .section-head + .grid-2{grid-auto-rows:112px!important}.hero.academy-home-brand + .section-head + .grid-2 .quick-card:nth-child(-n+4){height:112px!important;padding:11px 12px!important}.hero.academy-home-brand + .section-head + .grid-2 + .section-head + .progress-card{height:102px!important;min-height:102px!important;padding:10px 13px!important}}
