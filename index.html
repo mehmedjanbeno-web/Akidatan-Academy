@@ -26,6 +26,19 @@
     .link-btn[data-back]:active{transform:scale(.97)!important;background:var(--surface)!important}
     .search-wrap input{padding-right:66px!important}
     .search-wrap>span{right:10px!important;top:50%!important;transform:translateY(-50%)!important;width:44px!important;height:44px!important;display:flex!important;align-items:center!important;justify-content:center!important;font-size:32px!important;line-height:1!important;font-weight:900!important;color:var(--primary-2)!important;opacity:1!important;pointer-events:none!important}
+    /* Home layout final override: loaded after all theme styles */
+    .view:has(.academy-home-brand){height:auto!important;min-height:calc(100dvh - 4px)!important;grid-template-rows:auto auto auto auto auto!important;align-content:start!important;overflow:visible!important}
+    .view:has(.academy-home-brand)>.grid-2{height:auto!important;min-height:0!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(2,148px)!important;grid-auto-rows:148px!important;gap:10px!important;align-self:auto!important}
+    .view:has(.academy-home-brand)>.grid-2>.quick-card{position:static!important;top:auto!important;transform:none!important;width:100%!important;height:148px!important;min-height:148px!important;padding:15px!important;border-radius:22px!important;justify-content:space-between!important;overflow:hidden!important}
+    .view:has(.academy-home-brand)>.grid-2>.quick-card .quick-icon{width:52px!important;height:52px!important;flex:0 0 52px!important;border-radius:15px!important;font-size:26px!important}
+    .view:has(.academy-home-brand)>.grid-2>.quick-card .quick-title{font-size:calc(18px * var(--font-scale))!important;line-height:1.08!important}
+    .view:has(.academy-home-brand)>.grid-2>.quick-card .quick-sub{font-size:calc(11.5px * var(--font-scale))!important;line-height:1.15!important}
+    .view:has(.academy-home-brand)>.grid-2+.section-head{margin:10px 2px 6px!important;min-height:28px!important}
+    .view:has(.academy-home-brand)>.progress-card{height:112px!important;min-height:112px!important;max-height:112px!important;align-self:auto!important;padding:12px 14px!important;border-radius:20px!important;gap:6px!important;margin:0 0 8px!important;overflow:hidden!important}
+    .view:has(.academy-home-brand)>.progress-card .progress-row{margin:0!important}
+    .view:has(.academy-home-brand)>.progress-card .progress-track{height:7px!important;margin:2px 0!important}
+    .view:has(.academy-home-brand)>.progress-card .quick-sub{margin:0!important}
+    @media(max-width:430px){.view:has(.academy-home-brand)>.grid-2{grid-template-rows:repeat(2,142px)!important;grid-auto-rows:142px!important}.view:has(.academy-home-brand)>.grid-2>.quick-card{height:142px!important;min-height:142px!important;padding:14px!important}.view:has(.academy-home-brand)>.progress-card{height:106px!important;min-height:106px!important;max-height:106px!important}}
   </style>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
