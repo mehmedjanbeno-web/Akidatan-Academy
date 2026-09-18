@@ -39,6 +39,15 @@
     .view:has(.academy-home-brand)>.progress-card .progress-track{height:7px!important;margin:2px 0!important}
     .view:has(.academy-home-brand)>.progress-card .quick-sub{margin:0!important;font-size:calc(10px * var(--font-scale))!important}
     .view:has(.academy-home-brand)>.progress-card .progress-row strong{font-size:calc(19px * var(--font-scale))!important}
+    /* Final one-screen tuning: only compact the My progress area */
+    .view:has(.academy-home-brand)>.grid-2+.section-head{margin-top:4px!important;margin-bottom:2px!important;min-height:22px!important}
+    .view:has(.academy-home-brand)>.grid-2+.section-head h2{font-size:calc(16px * var(--font-scale))!important;line-height:1!important}
+    .view:has(.academy-home-brand)>.grid-2+.section-head .link-btn{padding:1px 4px!important;line-height:1!important}
+    .view:has(.academy-home-brand)>.progress-card{height:58px!important;min-height:58px!important;max-height:58px!important;padding:6px 12px!important;gap:2px!important;border-radius:16px!important}
+    .view:has(.academy-home-brand)>.progress-card .progress-row{line-height:1!important;align-items:center!important}
+    .view:has(.academy-home-brand)>.progress-card .progress-row strong{font-size:calc(17px * var(--font-scale))!important}
+    .view:has(.academy-home-brand)>.progress-card .progress-track{height:5px!important;margin:1px 0!important}
+    .view:has(.academy-home-brand)>.progress-card .quick-sub{font-size:calc(9px * var(--font-scale))!important;line-height:1!important}
     /* Move only the My progress block down into the free space above bottom nav */
     .view:has(.academy-home-brand)>.grid-2+.section-head{margin-top:10px!important}
     @media(max-width:430px){.view:has(.academy-home-brand)>.grid-2{grid-template-rows:repeat(2,142px)!important;grid-auto-rows:142px!important}.view:has(.academy-home-brand)>.grid-2>.quick-card{height:142px!important;min-height:142px!important;padding:14px!important}.view:has(.academy-home-brand)>.progress-card{height:106px!important;min-height:106px!important;max-height:106px!important}}
