@@ -68,3 +68,19 @@
   .hero.academy-home-brand + .section-head + .grid-2 .quick-card:nth-child(-n+3) .quick-title{font-size:calc(17px * var(--font-scale))}
   .hero.academy-home-brand + .section-head + .grid-2 .quick-card:nth-child(4){min-height:70px;padding:8px 11px}
 }
+
+/* 2026-09-19 v2: match approved dashboard proportions */
+.hero.academy-home-brand + .section-head + .grid-2{row-gap:12px!important;column-gap:12px!important}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-card:nth-child(-n+4){top:0!important;min-height:148px!important;padding:18px 18px!important;border-radius:24px!important;gap:12px!important;align-self:stretch!important;opacity:1!important}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-card:nth-child(-n+4) .quick-icon{width:58px!important;height:58px!important;border-radius:17px!important;font-size:29px!important}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-card:nth-child(-n+4) .quick-title{font-size:calc(20px * var(--font-scale))!important;line-height:1.08!important}
+.hero.academy-home-brand + .section-head + .grid-2 .quick-card:nth-child(-n+4) .quick-sub{font-size:calc(12.5px * var(--font-scale))!important;line-height:1.18!important}
+.hero.academy-home-brand + .section-head + .grid-2 + .section-head{margin:12px 0 7px!important}
+.hero.academy-home-brand + .section-head + .grid-2 + .section-head + .progress-card{min-height:0!important;height:auto!important;padding:14px 16px!important;margin:0!important;border-radius:20px!important}
+.hero.academy-home-brand + .section-head + .grid-2 + .section-head + .progress-card .progress-row{margin-bottom:7px!important}
+.hero.academy-home-brand + .section-head + .grid-2 + .section-head + .progress-card .progress-track{margin:5px 0 7px!important}
+@media(max-width:430px){
+ .hero.academy-home-brand + .section-head + .grid-2 .quick-card:nth-child(-n+4){min-height:138px!important;padding:16px!important;border-radius:22px!important}
+ .hero.academy-home-brand + .section-head + .grid-2 .quick-card:nth-child(-n+4) .quick-icon{width:54px!important;height:54px!important;font-size:27px!important}
+ .hero.academy-home-brand + .section-head + .grid-2 + .section-head + .progress-card{padding:12px 14px!important}
+}
