@@ -5,7 +5,7 @@
   function labels(){
     const ce=document.documentElement.lang==='ce';
     return ce
-      ? {back:'Йу вала',home:'Коьрте йух вал'}
+      ? {back:'Юханехьа',home:'Коьрта экран'}
       : {back:'Назад',home:'Главный экран'};
   }
 

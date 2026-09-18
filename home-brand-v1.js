@@ -16,7 +16,7 @@
     const menu=document.createElement('button');
     menu.className='academy-home-menu';
     menu.type='button';
-    menu.setAttribute('aria-label','Открыть меню');
+    menu.setAttribute('aria-label',state.language==='ce'?'Меню схьаелла':'Открыть меню');
     menu.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
     menu.addEventListener('click',()=>document.getElementById('side-menu-toggle')?.click());
 

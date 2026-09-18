@@ -25,7 +25,7 @@
   function labels(){
     const ce=document.documentElement.lang==='ce';
     return ce
-      ? {title:'Юкъара кхиам',course:'Курс 1',lessons:'Чекхдаьхна урокаш'}
+      ? {title:'Юкъара кхиам',course:'1-ра Курс',lessons:'Чекхъяьхна урокаш'}
       : {title:'Общий прогресс',course:'Курс 1',lessons:'Пройдено уроков'};
   }
 
