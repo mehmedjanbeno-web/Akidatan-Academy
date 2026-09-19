@@ -62,7 +62,7 @@ async function loadCourseCatalog(){
       }
       nextCourses.push({
         id:courseId,
-        get title(){return number===1&&state.language==='ce'?'1-ра Курс':t('course')+' '+number},
+        get title(){if(state.language==='ce'){const ce={1:'1-ра Курс',2:'2 - гlа курс',3:'3 - гlа курс',4:'4 - гlа курс',5:'5 - гlа курс'};return ce[number]||number+' - гlа курс'}return t('course')+' '+number},
         lessons:ids,pdf:API+'/course/'+number+'/pdf'
       });
       offset+=course.lessons;
