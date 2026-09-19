@@ -27,7 +27,6 @@
     return `<article class="lesson-card lesson-card-v2 ${done?'completed':''} ${locked?'locked':''}" ${locked?'data-locked-lesson="'+l.id+'"':''}>
       <div class="lesson-card-main">
         <button class="lesson-open" data-lesson="${l.id}" ${locked?'aria-disabled="true"':''}>
-          <span class="badge">${t('lesson')} ${l.number}</span>
           <h3>${l.title}</h3>
           <p class="lesson-audio-label">${courses.find(c=>c.id===l.courseId)?.title||''} · ${t('audio')}</p>
         </button>
