@@ -10,8 +10,9 @@
   const readNotes=()=>{try{return JSON.parse(localStorage.getItem(NOTES_KEY)||'{}')||{}}catch(_){return {}}};
   const writeNotes=notes=>localStorage.setItem(NOTES_KEY,JSON.stringify(notes));
   const isLessonLocked=l=>{
-    const index=lessons.findIndex(x=>x.id===l.id);
-    return index>0&&!state.completed.includes(lessons[index-1].id);
+    const courseLessons=lessons.filter(x=>x.courseId===l.courseId);
+    const index=courseLessons.findIndex(x=>x.id===l.id);
+    return index>0&&!state.completed.includes(courseLessons[index-1].id);
   };
   const noteText=()=>state.language==='ce'?{
     button:'Блокнот',help:'ЛадоьгӀучу хенахь ладаме ойланаш а, билгалдахарш а кхузахь дlаязде. ТӀетаӀае «Ӏалашдан», хӀокху гӀирса тӀехь уьш диса кхин дӀа а.',placeholder:'Билгалдахар кхузахь дӀаязде...',save:'Ӏалашдан',remove:'ДӀаяккха',saved:'Йоза Iалашдина',removed:'Йоза дӀадаьккхина',copy:'Шадерриг копировать де',copied:'Копировать дина',empty:'Блокнот ясса ю'
@@ -28,7 +29,7 @@
         <button class="lesson-open" data-lesson="${l.id}" ${locked?'aria-disabled="true"':''}>
           <span class="badge">${t('lesson')} ${l.number}</span>
           <h3>${l.title}</h3>
-          <p class="lesson-audio-label">${t('audio')}</p>
+          <p class="lesson-audio-label">${courses.find(c=>c.id===l.courseId)?.title||''} · ${t('audio')}</p>
         </button>
         <div class="lesson-card-actions">
           ${locked?`<span class="lesson-lock" aria-hidden="true">${lockSvg()}</span>`:`<button class="lesson-action-btn favorite-btn ${fav?'is-active':''}" data-favorite="${l.id}" aria-label="${fav?t('inFavorites'):t('toFavorites')}">${heartSvg(fav)}</button>`}
