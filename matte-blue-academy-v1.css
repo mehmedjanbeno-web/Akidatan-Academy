@@ -1,0 +1,90 @@
+/* Matte Blue Academy theme — visual-only layer.
+   No course, lesson, language, storage, API, or navigation logic is changed. */
+:root{
+  --bg:#f4f8fc;
+  --surface:#ffffff;
+  --surface-2:#e7f0f8;
+  --text:#17324d;
+  --muted:#6d8296;
+  --primary:#315f8a;
+  --primary-2:#6f9fc9;
+  --gold:#d4af37;
+  --line:rgba(49,95,138,.12);
+  --shadow:0 8px 24px rgba(49,95,138,.09);
+}
+:root[data-theme="dark"]{
+  --bg:#0e1a27;
+  --surface:#142536;
+  --surface-2:#1d3449;
+  --text:#edf5fc;
+  --muted:#9eb2c5;
+  --primary:#8db8dd;
+  --primary-2:#6f9fc9;
+  --gold:#d8b95a;
+  --line:rgba(173,205,232,.12);
+  --shadow:0 9px 26px rgba(0,0,0,.22);
+}
+html,body{background:var(--bg)}
+.app-shell{background:linear-gradient(180deg,rgba(111,159,201,.10),transparent 210px),var(--bg)}
+.card,.course-card,.lesson-card,.search-wrap input{
+  border-color:var(--line);
+  box-shadow:var(--shadow);
+}
+.card,.course-card,.lesson-card{border-radius:22px}
+.hero{
+  background:linear-gradient(145deg,#315f8a 0%,#6f9fc9 100%);
+  box-shadow:0 12px 30px rgba(49,95,138,.18);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:24px;
+}
+.hero-kicker{color:#eaf4fc}
+.primary-btn{
+  background:#fff;color:#315f8a;
+  box-shadow:0 5px 16px rgba(28,67,102,.12)
+}
+.secondary-btn{background:var(--surface-2);border-color:var(--line)}
+.quick-card{
+  background:linear-gradient(145deg,var(--surface),color-mix(in srgb,var(--surface-2) 52%,var(--surface)));
+  border:1px solid var(--line)!important;
+  box-shadow:0 7px 20px rgba(49,95,138,.08);
+}
+.quick-icon{
+  background:color-mix(in srgb,var(--primary-2) 16%,var(--surface));
+  color:var(--primary);
+}
+.progress-card{background:linear-gradient(145deg,var(--surface),color-mix(in srgb,var(--surface-2) 48%,var(--surface)))}
+.progress-track{background:color-mix(in srgb,var(--primary-2) 15%,var(--surface-2))}
+.progress-fill{background:linear-gradient(90deg,#6f9fc9,#315f8a)}
+.badge{background:var(--surface-2);color:var(--primary);border:1px solid rgba(111,159,201,.12)}
+.lesson-header{background:linear-gradient(145deg,#315f8a,#6f9fc9);color:#fff}
+:root[data-theme="dark"] .lesson-header{color:#fff}
+.play-btn{background:var(--primary);color:#fff}
+:root[data-theme="dark"] .play-btn{color:#0e1a27}
+.bottom-nav{
+  background:color-mix(in srgb,var(--surface) 94%,transparent);
+  border-top-color:var(--line);
+  box-shadow:0 -8px 28px rgba(49,95,138,.06);
+}
+.nav-item.active{
+  color:var(--primary);
+  background:color-mix(in srgb,var(--primary-2) 14%,var(--surface));
+}
+.link-btn{color:var(--primary)}
+.avatar{background:linear-gradient(145deg,#6f9fc9,#315f8a)}
+.toggle.on{background:#6f9fc9}
+.favorite-btn,.empty-icon{color:var(--gold)}
+.toast{background:#17324d}
+.file-row{background:var(--surface-2)}
+.search-wrap input:focus{
+  border-color:rgba(111,159,201,.55);
+  box-shadow:0 0 0 3px rgba(111,159,201,.12),var(--shadow);
+}
+.side-menu-panel,.side-menu-sheet{
+  background:var(--surface)!important;
+  border-color:var(--line)!important;
+}
+@media(max-width:430px){
+  .view:has(.academy-home-brand)>.grid-2>.quick-card{
+    border-radius:20px!important;
+  }
+}
